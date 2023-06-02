@@ -26,7 +26,7 @@ namespace Homework.Controllers
 		[HttpPost]
 		public IActionResult Game()
 		{
-			var arrayData = new ArrayDataModel();
+			var arrayData = new GameDataModel();
 			return View(arrayData);
 		}
 

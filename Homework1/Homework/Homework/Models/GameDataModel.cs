@@ -1,10 +1,10 @@
 ﻿namespace Homework.Models
 {
-	public class ArrayDataModel
+	public class GameDataModel
 	{
 		public char[] array {set; get; }
 
-		public ArrayDataModel()
+		public GameDataModel()
 		{
 			Random random = new Random();
 			array = new char[9];
