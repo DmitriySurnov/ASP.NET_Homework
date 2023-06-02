@@ -1,0 +1,51 @@
+﻿@model ArrayDataModel
+@{
+	ViewData["Title"] = "Игра";
+}
+
+<style type="text/css">
+	table {
+		width: 100px;
+		height: 100px;
+		margin: auto;
+	}
+
+	tr, td {
+		width: 32px;
+		height: 32px;
+	}
+
+	table, th, td {
+		border: 1px solid black;
+		border-collapse: collapse;
+	}
+
+	button {
+		margin-top: 10px;
+	}
+</style>
+
+<div class="text-center">
+	<h1 class="display-4">Привет</h1>
+	<table>
+		<tr>
+			<td><code>@Model.array[0]</code></td>
+			<td><code>@Model.array[1]</code></td>
+			<td><code>@Model.array[2]</code></td>
+		</tr>
+		<tr>
+			<td><code>@Model.array[3]</code></td>
+			<td><code>@Model.array[4]</code></td>
+			<td><code>@Model.array[5]</code></td>
+		</tr>
+		<tr>
+			<td><code>@Model.array[6]</code></td>
+			<td><code>@Model.array[7]</code></td>
+			<td><code>@Model.array[8]</code></td>
+		</tr>
+	</table>
+	<form method="post" asp-area="" asp-controller="Home">
+		<button title="Обновить" asp-action="Game">Обновить</button>
+		<button title="завершить игру" asp-action="FinishGame">завершить игру</button>
+	</form>
+</div>

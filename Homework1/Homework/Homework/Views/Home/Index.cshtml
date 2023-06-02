@@ -1,50 +1,17 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+	ViewData["Title"] = "Регистрация игрока";
 }
-
 <style type="text/css">
-	table {
-		width: 30%;
-		height: 100px;
-		margin: auto;
+	button {
+		margin-top: 10px;
 	}
 
-	tr, tb {
-		width: 32%;
-		height: 32px;
-	}
-
-	table, th, td {
-		border: 1px solid black;
-		border-collapse: collapse;
-	}
-
-	button{
-		margin-top:10px;
-	}
 </style>
-
 <div class="text-center">
-    <h1 class="display-4">Добро пожаловать</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-
-	<table>
-		<tr>
-			<th></th>
-			<th></th>
-			<th></th>
-		</tr>
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-	</table>
-	<button title="Новая игра">Новая игра</button>
-	<button title="Очистить">Очистить</button>
+	<h1 class="display-4">Регистрация игрока </h1>
+	<form method="post" asp-area="" asp-controller="Home" asp-action="Game">
+		<label>Введите Имя игрока</label><br>
+		<input type="text" name="Name" required /><br>
+		<button>Начать игру</button>
+	</form>
 </div>

@@ -17,6 +17,18 @@ namespace Homework.Controllers
 		{
 			return View();
 		}
+		[HttpPost]
+		public IActionResult FinishGame()
+		{
+			return View();
+		}
+
+		[HttpPost]
+		public IActionResult Game()
+		{
+			var arrayData = new ArrayDataModel();
+			return View(arrayData);
+		}
 
 		public IActionResult Privacy()
 		{
