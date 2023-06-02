@@ -2,7 +2,7 @@
 {
 	public class ArrayDataModel
 	{
-		public char[] array {private set; get; }
+		public char[] array {set; get; }
 
 		public ArrayDataModel()
 		{
