@@ -1,6 +1,6 @@
 ﻿@model GameDataModel
 @{
-	ViewData["Title"] = "Игра";
+	ViewData["Title"] = "Игра в крестики нолики";
 }
 
 <style type="text/css">
@@ -26,7 +26,7 @@
 </style>
 
 <div class="text-center">
-	<h1 class="display-4">Привет</h1>
+	<h1 class="display-4">Привет<code> @Model.PlayerName </code></h1>
 	<table>
 		<tr>
 			<td><code>@Model.array[0]</code></td>
@@ -45,6 +45,7 @@
 		</tr>
 	</table>
 	<form method="post" asp-area="" asp-controller="Home">
+		<input type="hidden" name="PlayerName" value="@Model.PlayerName" />
 		<button title="Обновить" asp-action="Game">Обновить</button>
 		<button title="завершить игру" asp-action="FinishGame">завершить игру</button>
 	</form>
