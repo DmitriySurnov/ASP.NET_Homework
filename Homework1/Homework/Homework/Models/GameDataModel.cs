@@ -2,24 +2,35 @@
 {
 	public class GameDataModel
 	{
-		public string PlayerName { get; private set; }
-		public char[] array {set; get; }
+		public static PlayerDataModel FirstPlayer { get; set; }
+		public static PlayerDataModel SecondPlayer { get; set; }
+		public string[] Field { private set; get; }
+		public string FildString { set; get; }
+		public bool IsX { get; set; } = true;
 
-		public GameDataModel()
+		public void FillTheField()
 		{
-			PlayerName = "";
 			Random random = new Random();
-			array = new char[9];
+			Field = new string[9];
 			for (int i = 0; i < 9; i++)
 			{
 				int value = random.Next(0, 3);
-				array[i] = value == 0 ? ' ' : value == 1 ? 'X' : 'O';
+				Field[i] = value == 0 ? "" : value == 1 ? "X" : "O";
 			}
+			FildString = string.Join(",", Field);
 		}
 
-		public GameDataModel(string playerName) : this()
+		public void FillTheField(string fildsString)
 		{
-			PlayerName = playerName;
+			FildString = fildsString;
+			Field = FildString.Split(',');
+		}
+
+		public void MakeAMove(int id)
+		{
+			Field[id] = IsX ? "X" : "O";
+			IsX = !IsX;
+			FildString = string.Join(",", Field);
 		}
 	}
 }

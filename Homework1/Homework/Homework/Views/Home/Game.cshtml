@@ -23,30 +23,133 @@
 	button {
 		margin-top: 10px;
 	}
+
+	.Cells {
+		width: 100%;
+		height: 100%;
+		margin-top: 3px;
+		border-width: 0px;
+		padding: 0px;
+	}
 </style>
 
 <div class="text-center">
-	<h1 class="display-4">Привет<code> @Model.PlayerName </code></h1>
-	<table>
-		<tr>
-			<td><code>@Model.array[0]</code></td>
-			<td><code>@Model.array[1]</code></td>
-			<td><code>@Model.array[2]</code></td>
-		</tr>
-		<tr>
-			<td><code>@Model.array[3]</code></td>
-			<td><code>@Model.array[4]</code></td>
-			<td><code>@Model.array[5]</code></td>
-		</tr>
-		<tr>
-			<td><code>@Model.array[6]</code></td>
-			<td><code>@Model.array[7]</code></td>
-			<td><code>@Model.array[8]</code></td>
-		</tr>
-	</table>
+	<h1 class="display-4">
+		Привет
+		@if (Model.IsX)
+		{
+			<code> @GameDataModel.FirstPlayer.Name </code>
+		}
+		else
+		{
+			<code> @GameDataModel.SecondPlayer.Name </code>
+		}
+
+
+	</h1>
 	<form method="post" asp-area="" asp-controller="Home">
-		<input type="hidden" name="PlayerName" value="@Model.PlayerName" />
-		<button title="Обновить" asp-action="Game">Обновить</button>
+		<table>
+			<tr>
+				<td>
+					@if (Model.Field[0] == null || Model.Field[0] == "")
+					{
+						<button class="Cells" name="idPole" value="0" asp-action="Game"></button>
+					}
+					else
+					{
+						<code>@Model.Field[0]</code>
+					}
+				</td>
+				<td>
+					@if (Model.Field[1] == null || Model.Field[1] == "")
+					{
+						<button class="Cells" name="idPole" value="1" asp-action="Game"></button>
+					}
+					else
+					{
+						<code>@Model.Field[1]</code>
+					}
+				</td>
+				<td>
+					@if (Model.Field[2] == null || Model.Field[2] == "")
+					{
+						<button class="Cells" name="idPole" value="2" asp-action="Game"></button>
+					}
+					else
+					{
+						<code>@Model.Field[2]</code>
+					}
+				</td>
+			</tr>
+			<tr>
+				<td>
+					@if (Model.Field[3] == null || Model.Field[3] == "")
+					{
+						<button class="Cells" name="idPole" value="3" asp-action="Game"></button>
+					}
+					else
+					{
+						<code>@Model.Field[3]</code>
+					}
+				</td>
+				<td>
+					@if (Model.Field[4] == null || Model.Field[4] == "")
+					{
+						<button class="Cells" name="idPole" value="4" asp-action="Game"></button>
+					}
+					else
+					{
+						<code>@Model.Field[4]</code>
+					}
+				</td>
+				<td>
+					@if (Model.Field[5] == null || Model.Field[5] == "")
+					{
+						<button class="Cells" name="idPole" value="5" asp-action="Game"></button>
+					}
+					else
+					{
+						<code>@Model.Field[5]</code>
+					}
+				</td>
+			</tr>
+			<tr>
+				<td>
+					@if (Model.Field[6] == null || Model.Field[6] == "")
+					{
+						<button class="Cells" name="idPole" value="6" asp-action="Game"></button>
+					}
+					else
+					{
+						<code>@Model.Field[6]</code>
+					}
+				</td>
+				<td>
+					@if (Model.Field[7] == null || Model.Field[7] == "")
+					{
+						<button class="Cells" name="idPole" value="7" asp-action="Game"></button>
+					}
+					else
+					{
+						<code>@Model.Field[7]</code>
+					}
+				</td>
+				<td>
+					@if (Model.Field[8] == null || Model.Field[8] == "")
+					{
+						@*<button class="Cells" asp-route-id="8" asp-action="Game"></button>*@
+						<button class="Cells" name="idPole" value="8" asp-action="Game"></button>
+					}
+					else
+					{
+						<code>@Model.Field[8]</code>
+					}
+				</td>
+			</tr>
+		</table>
+		<input type="hidden" name="isX" value="@Model.IsX.ToString()" />
+		<input type="hidden" name="FildsString" value="@Model.FildString" />
+		<button title="Обновить" asp-action="RestartGame">Обновить</button>
 		<button title="завершить игру" asp-action="FinishGame">завершить игру</button>
 	</form>
 </div>
