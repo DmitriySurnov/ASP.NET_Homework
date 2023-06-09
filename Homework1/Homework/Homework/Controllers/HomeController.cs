@@ -27,35 +27,17 @@ namespace Homework.Controllers
 		[HttpPost]
 		public IActionResult StartGame(string firstPlayerName, string secondPlayerName)
 		{
-			GameDataModel.FirstPlayer = new PlayerDataModel
-			{
-				Name = firstPlayerName
-			};
-			GameDataModel.SecondPlayer= new PlayerDataModel
-			{
-				Name = secondPlayerName
-			};
-			GameDataModel gameData = new GameDataModel();
+			GameDataModel gameData = new GameDataModel(firstPlayerName, secondPlayerName);
 			gameData.FillTheField();
 			return View("Game", gameData);
 		}
 
 		[HttpPost]
-		public IActionResult Game(int idPole, string FildsString, bool isX)
+		public IActionResult Game(int idPole, string fieldString, bool isX, string firstPlayerName, string secondPlayerName)
 		{
-			GameDataModel gameData = new GameDataModel();
-			gameData.FillTheField(FildsString);
-			gameData.IsX = isX;
+			GameDataModel gameData = new(firstPlayerName,secondPlayerName,fieldString,isX);
 			gameData.MakeAMove(idPole);
 			return View(gameData);
-		}
-
-		[HttpPost]
-		public IActionResult RestartGame()
-		{
-			GameDataModel gameData = new GameDataModel();
-			gameData.FillTheField();
-			return View("Game", gameData);
 		}
 
 		public IActionResult Privacy()

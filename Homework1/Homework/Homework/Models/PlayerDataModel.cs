@@ -2,6 +2,14 @@
 {
 	public class PlayerDataModel
 	{
-		public string Name { get; set; } = "Unknown";
+		public string Name { get; set; }
+
+		public PlayerDataModel() { 
+			Name = "Unknown";
+		}
+
+		public PlayerDataModel(string name) { 
+			Name = name;
+		}
 	}
 }

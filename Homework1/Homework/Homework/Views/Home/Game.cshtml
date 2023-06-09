@@ -38,20 +38,18 @@
 		Привет
 		@if (Model.IsX)
 		{
-			<code> @GameDataModel.FirstPlayer.Name </code>
+			<code> @Model.FirstPlayer.Name </code>
 		}
 		else
 		{
-			<code> @GameDataModel.SecondPlayer.Name </code>
+			<code> @Model.SecondPlayer.Name </code>
 		}
-
-
 	</h1>
 	<form method="post" asp-area="" asp-controller="Home">
 		<table>
 			<tr>
 				<td>
-					@if (Model.Field[0] == null || Model.Field[0] == "")
+					@if (Model.Field[0] == "")
 					{
 						<button class="Cells" name="idPole" value="0" asp-action="Game"></button>
 					}
@@ -61,7 +59,7 @@
 					}
 				</td>
 				<td>
-					@if (Model.Field[1] == null || Model.Field[1] == "")
+					@if (Model.Field[1] == "")
 					{
 						<button class="Cells" name="idPole" value="1" asp-action="Game"></button>
 					}
@@ -71,7 +69,7 @@
 					}
 				</td>
 				<td>
-					@if (Model.Field[2] == null || Model.Field[2] == "")
+					@if (Model.Field[2] == "")
 					{
 						<button class="Cells" name="idPole" value="2" asp-action="Game"></button>
 					}
@@ -83,7 +81,7 @@
 			</tr>
 			<tr>
 				<td>
-					@if (Model.Field[3] == null || Model.Field[3] == "")
+					@if (Model.Field[3] == "")
 					{
 						<button class="Cells" name="idPole" value="3" asp-action="Game"></button>
 					}
@@ -93,7 +91,7 @@
 					}
 				</td>
 				<td>
-					@if (Model.Field[4] == null || Model.Field[4] == "")
+					@if (Model.Field[4] == "")
 					{
 						<button class="Cells" name="idPole" value="4" asp-action="Game"></button>
 					}
@@ -103,7 +101,7 @@
 					}
 				</td>
 				<td>
-					@if (Model.Field[5] == null || Model.Field[5] == "")
+					@if (Model.Field[5] == "")
 					{
 						<button class="Cells" name="idPole" value="5" asp-action="Game"></button>
 					}
@@ -115,7 +113,7 @@
 			</tr>
 			<tr>
 				<td>
-					@if (Model.Field[6] == null || Model.Field[6] == "")
+					@if (Model.Field[6] == "")
 					{
 						<button class="Cells" name="idPole" value="6" asp-action="Game"></button>
 					}
@@ -125,7 +123,7 @@
 					}
 				</td>
 				<td>
-					@if (Model.Field[7] == null || Model.Field[7] == "")
+					@if (Model.Field[7] == "")
 					{
 						<button class="Cells" name="idPole" value="7" asp-action="Game"></button>
 					}
@@ -135,9 +133,8 @@
 					}
 				</td>
 				<td>
-					@if (Model.Field[8] == null || Model.Field[8] == "")
+					@if (Model.Field[8] == "")
 					{
-						@*<button class="Cells" asp-route-id="8" asp-action="Game"></button>*@
 						<button class="Cells" name="idPole" value="8" asp-action="Game"></button>
 					}
 					else
@@ -147,9 +144,11 @@
 				</td>
 			</tr>
 		</table>
-		<input type="hidden" name="isX" value="@Model.IsX.ToString()" />
-		<input type="hidden" name="FildsString" value="@Model.FildString" />
-		<button title="Обновить" asp-action="RestartGame">Обновить</button>
+		<input type="hidden" name="IsX" value="@Model.IsX.ToString()" />
+		<input type="hidden" name="FieldString" value="@Model.FieldString" />
+		<input type="hidden" name="firstPlayerName" value="@Model.FirstPlayer.Name" />
+		<input type="hidden" name="secondPlayerName" value="@Model.SecondPlayer.Name" />
+		<button title="Обновить" asp-action="StartGame">Обновить</button>
 		<button title="завершить игру" asp-action="FinishGame">завершить игру</button>
 	</form>
 </div>
