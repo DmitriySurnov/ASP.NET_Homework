@@ -1,0 +1,50 @@
+﻿@model GameDataModel;
+@using Homework.HtmlHelpers
+
+<style type="text/css">
+	table {
+		width: 100px;
+		height: 100px;
+		margin: auto;
+	}
+
+	tr, td {
+		width: 32px;
+		height: 32px;
+	}
+
+	table, th, td {
+		border: 1px solid black;
+		border-collapse: collapse;
+	}
+
+	button {
+		margin-top: 10px;
+	}
+
+	.Cells {
+		width: 100%;
+		height: 100%;
+		margin-top: 3px;
+		border-width: 0px;
+		padding: 0px;
+	}
+</style>
+
+<table>
+	@for (int rowCounter = 0; rowCounter < 3; rowCounter++)
+	{
+		<tr>
+			@for (int columnCounter = 0; columnCounter < 3; columnCounter++)
+			{
+				<td>
+					@{
+						var currenId = rowCounter * 3 + columnCounter;
+						@Html.ShowCell(Model, currenId)
+						;
+					}
+				</td>
+			}
+		</tr>
+	}
+</table>

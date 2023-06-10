@@ -8,6 +8,8 @@
 		public string FieldString { set; get; }
 		public bool IsX { get; set; }
 
+		public bool IsMove { get; set; }
+
 		public GameDataModel(string firstPlayer, string secondPlayer, string fieldString, bool isX)
 		{
 			FirstPlayer = new PlayerDataModel(firstPlayer);
@@ -15,6 +17,7 @@
 			FieldString = fieldString;
 			IsX = isX;
 			Field = FieldString.Split(',');
+			IsMove = !(FieldString.Length == 17);
 		}
 
 		public GameDataModel(string firstPlayer, string secondPlayer)
@@ -24,6 +27,7 @@
 			IsX = true;
 			FieldString = string.Empty;
 			Field = new string[9];
+			IsMove = true;
 			FillTheField();
 		}
 
@@ -33,6 +37,7 @@
 			IsX = true;
 			FieldString = string.Empty;
 			Field = new string[9];
+			IsMove = true;
 		}
 
 		public void FillTheField()
@@ -44,6 +49,7 @@
 				Field[i] = value == 0 ? "" : value == 1 ? "X" : "O";
 			}
 			FieldString = string.Join(",", Field);
+			IsMove = !(FieldString.Length == 17);
 		}
 
 		public void MakeAMove(int id)
@@ -51,6 +57,7 @@
 			Field[id] = IsX ? "X" : "O";
 			IsX = !IsX;
 			FieldString = string.Join(",", Field);
+			IsMove = !(FieldString.Length == 17);
 		}
 	}
 }
