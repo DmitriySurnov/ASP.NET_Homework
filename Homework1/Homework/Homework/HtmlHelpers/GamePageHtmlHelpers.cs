@@ -15,7 +15,7 @@ namespace Homework.HtmlHelpers
 
 		public static HtmlString ShowCell(this IHtmlHelper helpers, GameDataModel dataModel, int currenId)
 		{
-			var result = dataModel.Field[currenId] == "" ?
+			var result = dataModel.Field[currenId] == "" && dataModel.Winner == -1 ?
 				$"<button class='Cells' name='idPole' value='{currenId}' formaction='/Home/Game'></button>"
 				: dataModel.Field[currenId];
 			return new HtmlString(result);

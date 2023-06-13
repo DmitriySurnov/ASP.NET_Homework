@@ -16,6 +16,14 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\Разработка веб-приложений с использованием технологий ASP.NET и AJAX\git\ASP.NET_Homework1\Homework1\Homework\Homework
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/Разработка веб-приложений с использованием технологий ASP.NET и AJAX/git/ASP.NET_Homework1/Homework1/Homework/Homework/Components/ControlButtons.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xDb250cm9sQnV0dG9ucy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Разработка веб-приложений с использованием технологий ASP.NET и AJAX/git/ASP.NET_Homework1/Homework1/Homework/Homework/Components/ShowWinner.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xTaG93V2lubmVyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Разработка веб-приложений с использованием технологий ASP.NET и AJAX/git/ASP.NET_Homework1/Homework1/Homework/Homework/Views/Home/Field.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxGaWVsZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

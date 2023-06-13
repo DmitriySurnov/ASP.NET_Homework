@@ -28,7 +28,6 @@ namespace Homework.Controllers
 		public IActionResult StartGame(string firstPlayerName, string secondPlayerName)
 		{
 			GameDataModel gameData = new GameDataModel(firstPlayerName, secondPlayerName);
-			gameData.FillTheField();
 			return View("Game", gameData);
 		}
 

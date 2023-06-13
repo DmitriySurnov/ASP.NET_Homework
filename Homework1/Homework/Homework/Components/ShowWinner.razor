@@ -1,0 +1,38 @@
+﻿<h3>@Winner</h3>
+
+@using Homework.Models
+
+@code {
+
+	[Parameter]
+	public GameDataModel GameData { set; get; }
+
+	string Winner = "";
+
+	protected override void OnInitialized()
+	{
+		switch (GameData.Winner)
+		{
+			case 0:
+				{
+					Winner = "Ничья";
+					break;
+				}
+			case 1:
+				{
+					Winner = Winner = $"Победил {GameData.FirstPlayer.Name}";
+					break;
+				}
+			case 2:
+				{
+					Winner = Winner = $"Победил {GameData.SecondPlayer.Name}";
+					break;
+				}
+			default:
+				{
+					Winner = "";
+					break;
+				}
+		}
+	}
+}

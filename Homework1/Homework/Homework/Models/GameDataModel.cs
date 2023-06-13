@@ -3,12 +3,18 @@
 	public class GameDataModel
 	{
 		public PlayerDataModel FirstPlayer { get; set; }
+
 		public PlayerDataModel SecondPlayer { get; set; }
+
 		public string[] Field { private set; get; }
+
 		public string FieldString { set; get; }
+
 		public bool IsX { get; set; }
 
 		public bool IsMove { get; set; }
+
+		public int Winner { get; private set; }
 
 		public GameDataModel(string firstPlayer, string secondPlayer, string fieldString, bool isX)
 		{
@@ -18,6 +24,7 @@
 			IsX = isX;
 			Field = FieldString.Split(',');
 			IsMove = !(FieldString.Length == 17);
+			Winner = -1;
 		}
 
 		public GameDataModel(string firstPlayer, string secondPlayer)
@@ -29,6 +36,8 @@
 			Field = new string[9];
 			IsMove = true;
 			FillTheField();
+			Winner = -1;
+			DeterminingWinner();
 		}
 
 		public  GameDataModel() { 
@@ -50,6 +59,27 @@
 			}
 			FieldString = string.Join(",", Field);
 			IsMove = !(FieldString.Length == 17);
+			DeterminingWinner();
+		}
+
+		private void DeterminingWinner()
+		{
+			int[,] combinations = {
+				{ 0, 1, 2 }, { 3, 4, 5 }, { 6, 7, 8 },
+				{ 0, 3, 6 }, { 1, 4, 7 }, { 2, 5, 8 },
+				{ 0, 4, 8 }, { 2, 4, 6 }};
+			for (int i = 0; i < 8; i++)
+			{
+				if (Field[combinations[i, 0]] == Field[combinations[i, 1]] &&
+					Field[combinations[i, 0]] == Field[combinations[i, 2]] && Field[combinations[i, 0]] != "")
+				{
+					IsMove = false;
+					Winner = Field[combinations[i, 0]] == "X" ? 1 : 2;
+					break;
+				}
+			}
+			if (!IsMove && Winner == -1)
+				Winner = 0;
 		}
 
 		public void MakeAMove(int id)
@@ -58,6 +88,7 @@
 			IsX = !IsX;
 			FieldString = string.Join(",", Field);
 			IsMove = !(FieldString.Length == 17);
+			DeterminingWinner();
 		}
 	}
 }

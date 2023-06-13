@@ -15,7 +15,7 @@
 	<form method="post" asp-area="" asp-controller="Home">
 		@await Html.PartialAsync("Field",Model)
 		@Html.DataModel(Model)
-		<button title="Обновить" asp-action="StartGame">Обновить</button>
-		<button title="завершить игру" asp-action="FinishGame">завершить игру</button>
+		<component type="typeof(Homework.Components.ShowWinner)" render-mode="Static" param-GameData="Model" />
+		<component type="typeof(Homework.Components.ControlButtons)" render-mode="Static" />
 	</form>
 </div>
