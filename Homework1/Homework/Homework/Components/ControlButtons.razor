@@ -1,5 +1,13 @@
-﻿<button title="Обновить" formaction="/Home/StartGame">Обновить</button>
+﻿<button title="Обновить" formaction="/Home/WaitingPlayers">Обновить</button>
+@if (StaticGameDataModelcs.GameDataModel.MotionPlayer.Id == dataModel.Id)
+{
+	<button title="Новая игра" formaction="/Home/RestartGame">Новая игра</button>
+}
 <button title="завершить игру" formaction="/Home/FinishGame">завершить игру</button>
-@code {
 
+@using Homework.Models
+
+@code {
+	[Parameter]
+	public PlayerDataModel dataModel { set; get; }
 }

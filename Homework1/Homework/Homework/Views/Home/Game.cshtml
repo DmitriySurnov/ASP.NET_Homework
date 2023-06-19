@@ -1,21 +1,33 @@
-﻿@model GameDataModel
+﻿@model PlayerDataModel;
 @{
 	ViewData["Title"] = "Игра в крестики нолики";
 }
 @using Homework.HtmlHelpers
+@using Homework.Models
+
+<style type="text/css">
+	button {
+		margin-left: 5px;
+	}
+</style>
 
 <div class="text-center">
 	<h1 class="display-4">
-		Привет @Html.ShowPlayrName(Model)
-		@if (!Model.IsMove)
+		Привет @Model.Name
+		@if (!StaticGameDataModelcs.GameDataModel.IsMove)
 		{
 			@await Html.PartialAsync("FinishGame")
+		}
+		else
+		{
+			<br /> @Html.WhoseMove(Model)
 		}
 	</h1>
 	<form method="post" asp-area="" asp-controller="Home">
 		@await Html.PartialAsync("Field",Model)
-		@Html.DataModel(Model)
-		<component type="typeof(Homework.Components.ShowWinner)" render-mode="Static" param-GameData="Model" />
-		<component type="typeof(Homework.Components.ControlButtons)" render-mode="Static" />
+	</form>
+	<component type="typeof(Homework.Components.ShowWinner)" render-mode="Static" />
+	<form method="get" asp-area="" asp-controller="Home">
+		<component type="typeof(Homework.Components.ControlButtons)" render-mode="Static" param-dataModel="Model" />
 	</form>
 </div>

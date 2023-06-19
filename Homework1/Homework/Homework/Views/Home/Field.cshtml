@@ -1,5 +1,4 @@
-﻿@model GameDataModel;
-@using Homework.HtmlHelpers
+﻿@model PlayerDataModel;
 
 <style type="text/css">
 	table {
@@ -18,9 +17,9 @@
 		border-collapse: collapse;
 	}
 
-	button {
-		margin-top: 10px;
-	}
+		td > button {
+			margin-left: 0px;
+		}
 
 	.Cells {
 		width: 100%;
@@ -40,8 +39,7 @@
 				<td>
 					@{
 						var currenId = rowCounter * 3 + columnCounter;
-						@Html.ShowCell(Model, currenId)
-						;
+						@await Html.PartialAsync("Cell",new CellModel(currenId,Model))
 					}
 				</td>
 			}

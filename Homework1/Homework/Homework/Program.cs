@@ -2,8 +2,17 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDistributedMemoryCache();// добавляем IDistributedMemoryCache
+builder.Services.AddSession(options =>
+{
+	options.IdleTimeout = TimeSpan.FromMinutes(10);
+	options.Cookie.HttpOnly = true;
+	options.Cookie.IsEssential = true;
+});// добавляем сервисы сессии
 
 var app = builder.Build();
+
+app.UseSession();   // добавляем middleware для работы с сессиями
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

@@ -4,14 +4,11 @@
 
 @code {
 
-	[Parameter]
-	public GameDataModel GameData { set; get; }
-
 	string Winner = "";
 
 	protected override void OnInitialized()
 	{
-		switch (GameData.Winner)
+		switch (StaticGameDataModelcs.GameDataModel.Winner)
 		{
 			case 0:
 				{
@@ -20,12 +17,12 @@
 				}
 			case 1:
 				{
-					Winner = Winner = $"Победил {GameData.FirstPlayer.Name}";
+					Winner = Winner = $"Победил {StaticGameDataModelcs.GameDataModel.ListPlayer[0].Name}";
 					break;
 				}
 			case 2:
 				{
-					Winner = Winner = $"Победил {GameData.SecondPlayer.Name}";
+					Winner = Winner = $"Победил {StaticGameDataModelcs.GameDataModel.ListPlayer[1].Name}";
 					break;
 				}
 			default:

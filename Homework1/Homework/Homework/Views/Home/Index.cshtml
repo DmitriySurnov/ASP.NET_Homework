@@ -1,5 +1,5 @@
 ﻿@{
-	ViewData["Title"] = "Ввод данных играков";
+	ViewData["Title"] = "Ввод данных играка";
 }
 <style type="text/css">
 	button {
@@ -10,10 +10,8 @@
 <div class="text-center">
 	<h1 class="display-4">Ввод данных играков </h1>
 	<form method="post" asp-area="" asp-controller="Home" asp-action="StartGame">
-		<label>Введите Имя игрока 1</label><br>
-		<input name="FirstPlayerName" /><br>
-		<label>Введите Имя игрока 2</label><br>
-		<input name="SecondPlayerName" /><br>
+		<label>Введите Имя игрока</label><br>
+		<input name="PlayerName" /><br>
 		<button>Начать игру</button>
 	</form>
 </div>
