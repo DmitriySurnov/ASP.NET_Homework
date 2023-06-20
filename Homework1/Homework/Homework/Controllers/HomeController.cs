@@ -35,7 +35,7 @@ namespace Homework.Controllers
 					StaticGameDataModelcs.GameDataModel.ListPlayer.Add(playerDataModel);
 					if (StaticGameDataModelcs.GameDataModel.ListPlayer.Count == 1)
 						StaticGameDataModelcs.GameDataModel.MotionPlayer = playerDataModel;
-					Models.SessionExtensions.Set(HttpContext.Session, "Player", playerDataModel);
+					HttpContext.Session.Set("Player", playerDataModel);
 					return RedirectToAction("WaitingPlayers");
 				}
 			}
@@ -56,7 +56,7 @@ namespace Homework.Controllers
 		[HttpGet]
 		public IActionResult Game()
 		{
-			PlayerDataModel? playerDataModel = Models.SessionExtensions.Get<PlayerDataModel>(HttpContext.Session, "Player");
+			PlayerDataModel? playerDataModel = HttpContext.Session.Get<PlayerDataModel>("Player");
 			return playerDataModel != null ?
 				View("Game", playerDataModel) :
 				View("Game", new PlayerDataModel());
