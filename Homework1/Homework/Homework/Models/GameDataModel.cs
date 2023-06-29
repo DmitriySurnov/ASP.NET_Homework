@@ -1,77 +1,51 @@
-﻿namespace Homework.Models
+﻿using Homework.ServerDatabasa;
+
+namespace Homework.Models
 {
-	public class GameDataModel
-	{
+    public class GameDataModel
+    {
+		public string NameСurrentРlayer { get; private set; }
 
-		public string[] Field { private set; get; }
+		public bool IsРlayer { get; private set; }
 
-		public string FieldString { set; get; }
+		public bool MotionPlayer { set; get; }
+
+		public FieldModel FieldGame { private set; get; }
 
 		public bool IsX { get; set; }
 
-		public bool IsMove { get; set; }
+		public string WinnerРlayer { get; private set; }
 
-		public int Winner { get; private set; }
-
-		public List<PlayerDataModel> ListPlayer { set; get; }
-
-		public PlayerDataModel MotionPlayer { set; get; }
-
-		public GameDataModel()
-		{
-			IsX = true;
-			FieldString = string.Empty;
-			Field = new string[9];
-			IsMove = true;
-			FillTheField();
-			Winner = -1;
-			DeterminingWinner();
-			MotionPlayer = new PlayerDataModel();
-			ListPlayer = new List<PlayerDataModel>();
-		}
-
-		public void FillTheField()
-		{
-			Random random = new Random();
-			for (int i = 0; i < 9; i++)
+		public GameDataModel(PlayerDataModel player)
+        {
+			NameСurrentРlayer = player.Name;
+			IsРlayer = player.Status == 1;
+			MotionPlayer = GamingTables.GameTable[player.NumberTable].MotionPlayer.Id == player.Id;
+			FieldGame = new FieldModel(GamingTables.GameTable[player.NumberTable].Field.FieldGame, player.NumberTable, player);
+			IsX = GamingTables.GameTable[player.NumberTable].Field.IsX;
+			switch (GamingTables.GameTable[player.NumberTable].Winner)
 			{
-				int value = random.Next(0, 3);
-				Field[i] = value == 0 ? "" : value == 1 ? "X" : "O";
+				case 0:
+					{
+						WinnerРlayer = "Ничья";
+						break;
+					}
+				case 1:
+					{
+						WinnerРlayer = $"Победил {GamingTables.GameTable[player.NumberTable].Players[0].Name}";
+						break;
+					}
+				case 2:
+					{
+						WinnerРlayer = $"Победил {GamingTables.GameTable[player.NumberTable].Players[1].Name}";
+						break;
+					}
+				default:
+					{
+						WinnerРlayer = "";
+						break;
+					}
 			}
-			FieldString = string.Join(",", Field);
-			IsMove = !(FieldString.Length == 17);
-			DeterminingWinner();
 		}
-
-		private void DeterminingWinner()
-		{
-			Winner = -1;
-			int[,] combinations = {
-				{ 0, 1, 2 }, { 3, 4, 5 }, { 6, 7, 8 },
-				{ 0, 3, 6 }, { 1, 4, 7 }, { 2, 5, 8 },
-				{ 0, 4, 8 }, { 2, 4, 6 }};
-			for (int i = 0; i < 8; i++)
-			{
-				if (Field[combinations[i, 0]] == Field[combinations[i, 1]] &&
-					Field[combinations[i, 0]] == Field[combinations[i, 2]] && Field[combinations[i, 0]] != "")
-				{
-					IsMove = false;
-					Winner = Field[combinations[i, 0]] == "X" ? 1 : 2;
-					break;
-				}
-			}
-			if (!IsMove && Winner == -1)
-				Winner = 0;
-		}
-
-		public void MakeAMove(int id)
-		{
-			Field[id] = IsX ? "X" : "O";
-			FieldString = string.Join(",", Field);
-			IsMove = !(FieldString.Length == 17);
-			DeterminingWinner();
-			if (Winner == -1)
-				IsX = !IsX;
-		}
-	}
+    }
 }

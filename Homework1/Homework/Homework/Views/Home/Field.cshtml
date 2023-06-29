@@ -1,4 +1,4 @@
-﻿@model PlayerDataModel;
+﻿@model FieldModel;
 
 <style type="text/css">
 	table {
@@ -39,7 +39,7 @@
 				<td>
 					@{
 						var currenId = rowCounter * 3 + columnCounter;
-						@await Html.PartialAsync("Cell",new CellModel(currenId,Model))
+						@await Html.PartialAsync("Cell",Model.FieldGame[@currenId])
 					}
 				</td>
 			}

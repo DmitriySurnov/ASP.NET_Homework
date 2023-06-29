@@ -1,13 +1,14 @@
-﻿<button title="Обновить" formaction="/Home/WaitingPlayers">Обновить</button>
-@if (StaticGameDataModelcs.GameDataModel.MotionPlayer.Id == dataModel.Id)
+﻿@using Homework.Models;
+
+<button title="Обновить" formaction="/Home/WaitingPlayers">Обновить</button>
+<button title="Выбрать другой стол" formaction="/Home/AnotherTable">Выбрать другой стол</button>
+@if (dataModel != null && dataModel.MotionPlayer)
 {
 	<button title="Новая игра" formaction="/Home/RestartGame">Новая игра</button>
 }
 <button title="завершить игру" formaction="/Home/FinishGame">завершить игру</button>
 
-@using Homework.Models
-
 @code {
 	[Parameter]
-	public PlayerDataModel dataModel { set; get; }
+	public GameDataModel? dataModel { set; get; }
 }

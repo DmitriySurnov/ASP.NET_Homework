@@ -1,17 +1,25 @@
-﻿@{
+﻿@model LoginDataModel
+@{
 	ViewData["Title"] = "Ввод данных игрока";
 }
 <style type="text/css">
 	button {
 		margin-top: 10px;
 	}
+	.validete-file{
+		color:red;
+		font-size:20px;
+		font-weight:bold;
+		text-decoration:underline;
+	}
 
 </style>
 <div class="text-center">
 	<h1 class="display-4">Ввод данных игрока </h1>
-	<form method="post" asp-area="" asp-controller="Home" asp-action="StartGame">
+	<form method="post" asp-area="" asp-controller="Home" asp-action="Index">
+		<div asp-validation-summary="All" class="validete-file"></div>
 		<label>Введите Имя игрока</label><br>
-		<input name="PlayerName" /><br>
+		<input name="РlayerName" asp-for="РlayerName" /><br>
 		<button>Начать игру</button>
 	</form>
 </div>

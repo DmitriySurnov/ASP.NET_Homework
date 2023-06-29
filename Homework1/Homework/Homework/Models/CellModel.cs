@@ -1,8 +1,10 @@
-﻿namespace Homework.Models
+﻿using Homework.ServerDatabasa;
+
+namespace Homework.Models
 {
 	public class CellModel
 	{
-		public string CellText { get; private set; }
+		public char CellText { get; private set; }
 
 		public bool IsWinner { get; private set; }
 
@@ -10,12 +12,11 @@
 
 		public bool IsMotionPlayer { private set; get; }
 
-		public CellModel(int currenId, PlayerDataModel playerDataModel)
-		{
+		public CellModel(int currenId, char cellText, int numberTable, PlayerDataModel player) {
 			CurrenId = currenId;
-			IsWinner = StaticGameDataModelcs.GameDataModel.Winner == -1;
-			CellText = StaticGameDataModelcs.GameDataModel.Field[currenId];
-			IsMotionPlayer = StaticGameDataModelcs.GameDataModel.MotionPlayer.Id == playerDataModel.Id;
+			CellText = cellText;
+			IsWinner = GamingTables.GameTable[numberTable].Winner != -1;
+			IsMotionPlayer = GamingTables.GameTable[numberTable].MotionPlayer.Id == player.Id;
 		}
 	}
 }

@@ -1,0 +1,34 @@
+﻿@model LobbyModel
+
+<style>
+	.center {
+		text-align: center;
+	}
+
+	#tables {
+		display: flex;
+		justify-content: space-evenly;
+	}
+
+	#tables > div {
+		width: 32%;
+		background: bisque;
+	}
+
+	button {
+		margin-top: 10px;
+	}
+</style>
+
+<h1 class="center"> Добро пожалоть @Model.NameСurrentРlayer</h1>
+<h1 class="center"> Выберети стол</h1>
+<div id="tables">
+	@for (int currenId = 0; currenId < 3; currenId++)
+	{
+		@await Html.PartialAsync("Table",@Model.Tables[currenId])
+	}
+</div>
+<form method="get" class="center" asp-area="" asp-controller="Home">
+	<button asp-action="Lobby">Обновить Информацию</button>
+	<button asp-action="Exit">На главную страницу</button>
+</form>

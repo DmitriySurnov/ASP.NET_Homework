@@ -1,14 +1,13 @@
 ﻿using Homework.Models;
-using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Homework.HtmlHelpers
 {
 	public static class GamePageHtmlHelpers
 	{
-		public static string WhoseMove(this IHtmlHelper helpers, PlayerDataModel dataModel)
+		public static string WhoseMove(this IHtmlHelper helpers, GameDataModel dataModel)
 		{
-			return StaticGameDataModelcs.GameDataModel.MotionPlayer.Id == dataModel.Id ?
+			return dataModel.MotionPlayer ?
 				"Ваш ход" : "Ход противника";
 
 		}

@@ -20,10 +20,6 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xDb250cm9sQnV0dG9ucy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Разработка веб-приложений с использованием технологий ASP.NET и AJAX/git/ASP.NET_Homework1/Homework1/Homework/Homework/Components/ShowWinner.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xTaG93V2lubmVyLnJhem9y
-build_metadata.AdditionalFiles.CssScope = 
-
 [D:/Разработка веб-приложений с использованием технологий ASP.NET и AJAX/git/ASP.NET_Homework1/Homework1/Homework/Homework/Views/Home/Cell.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDZWxsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -44,8 +40,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Разработка веб-приложений с использованием технологий ASP.NET и AJAX/git/ASP.NET_Homework1/Homework1/Homework/Homework/Views/Home/Lobby.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxMb2JieS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Разработка веб-приложений с использованием технологий ASP.NET и AJAX/git/ASP.NET_Homework1/Homework1/Homework/Homework/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Разработка веб-приложений с использованием технологий ASP.NET и AJAX/git/ASP.NET_Homework1/Homework1/Homework/Homework/Views/Home/SessionExpiration.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTZXNzaW9uRXhwaXJhdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Разработка веб-приложений с использованием технологий ASP.NET и AJAX/git/ASP.NET_Homework1/Homework1/Homework/Homework/Views/Home/Table.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxUYWJsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Разработка веб-приложений с использованием технологий ASP.NET и AJAX/git/ASP.NET_Homework1/Homework1/Homework/Homework/Views/Home/WaitingPlayers.cshtml]

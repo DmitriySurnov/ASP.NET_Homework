@@ -1,4 +1,5 @@
 ﻿using Homework.Models;
+using Homework.ServerDatabasa;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -15,40 +16,151 @@ namespace Homework.Controllers
 
 		public IActionResult Index()
 		{
-			return View();
-		}
-
-		[HttpGet]
-		public IActionResult FinishGame()
-		{
-			return View();
+			return View(new LoginDataModel());
 		}
 
 		[HttpPost]
-		public IActionResult StartGame(string PlayerName)
+		public IActionResult Index(LoginDataModel dataModel)
 		{
-			lock (StaticGameDataModelcs.ListPlayerLockObject)
+			if (ModelState.IsValid)
 			{
-				if (StaticGameDataModelcs.GameDataModel.ListPlayer.Count < 2)
+				//QueryBuilder queryBuilder = new QueryBuilder();
+				//queryBuilder.Add(nameof(dataModel.РlayerName), dataModel.РlayerName ?? string.Empty);
+
+				//var currentRequestUrl = HttpContext.Request.GetEncodedUrl();
+
+				//UriBuilder uriBuilder = new UriBuilder(currentRequestUrl);
+				//uriBuilder.Path = this.Url.Action(nameof(SetLobby));
+				//uriBuilder.Query = queryBuilder.ToString();
+
+				//return Redirect(uriBuilder.Uri.ToString());
+
+				return SetLobby(dataModel.РlayerName ?? "");
+
+			}
+			return View(dataModel);
+		}
+		private void ExitPlayer(PlayerDataModel playerDataModel)
+		{
+			int numberTable = playerDataModel.NumberTable;
+			if (playerDataModel.Status == 1)
+			{
+				lock (GamingTables.GameTable[numberTable].ChangesLockObject)
 				{
-					PlayerDataModel playerDataModel = new PlayerDataModel(PlayerName);
-					StaticGameDataModelcs.GameDataModel.ListPlayer.Add(playerDataModel);
-					if (StaticGameDataModelcs.GameDataModel.ListPlayer.Count == 1)
-						StaticGameDataModelcs.GameDataModel.MotionPlayer = playerDataModel;
-					HttpContext.Session.Set("Player", playerDataModel);
-					return RedirectToAction("WaitingPlayers");
+					for (int i = 0; i < GamingTables.GameTable[numberTable].Players.Count; i++)
+					{
+						if (GamingTables.GameTable[numberTable].Players[i].Id == playerDataModel.Id)
+						{
+							GamingTables.GameTable[numberTable].Players.RemoveAt(i);
+							break;
+						}
+					}
 				}
 			}
-			return RedirectToAction("Index");
+		}
+
+		public IActionResult FinishGame()
+		{
+			PlayerDataModel? playerDataModel = HttpContext.Session.Get<PlayerDataModel>("Player");
+			if (playerDataModel == null)
+				return View("SessionExpiration");
+			else
+			{
+				ExitPlayer(playerDataModel);
+				playerDataModel.NumberTable = -1;
+				playerDataModel.Status = -1;
+				HttpContext.Session.Set("Player", playerDataModel);
+				return View();
+			}
+		}
+
+		public IActionResult Exit()
+		{
+			return View("Index");
+		}
+
+		public IActionResult AnotherTable()
+		{
+			PlayerDataModel? playerDataModel = HttpContext.Session.Get<PlayerDataModel>("Player");
+			if (playerDataModel == null)
+				return View("SessionExpiration");
+			else
+			{
+				ExitPlayer(playerDataModel);
+				playerDataModel.NumberTable = -1;
+				playerDataModel.Status = 0;
+				HttpContext.Session.Set("Player", playerDataModel);
+				return RedirectToAction("Lobby");
+			}
+		}
+		//[HttpPost]
+		public IActionResult SetLobby(string playerName)
+		{
+			PlayerDataModel playerDataModel = new(playerName);
+			HttpContext.Session.Set("Player", playerDataModel);
+			return RedirectToAction("Lobby");
+		}
+
+		public IActionResult Lobby()
+		{
+			PlayerDataModel? playerDataModel = HttpContext.Session.Get<PlayerDataModel>("Player");
+			if (playerDataModel == null)
+				return View("SessionExpiration");
+			else
+				return View(new LobbyModel(playerDataModel));
+		}
+
+
+
+		[HttpGet]
+		public IActionResult StartGame(int tableNumber)
+		{
+			PlayerDataModel? playerDataModel = HttpContext.Session.Get<PlayerDataModel>("Player");
+			if (playerDataModel == null)
+				return View("SessionExpiration");
+			else
+			{
+				lock (GamingTables.GameTable[tableNumber].ChangesLockObject)
+				{
+					if (GamingTables.GameTable[tableNumber].Players.Count < 2)
+					{
+						GamingTables.GameTable[tableNumber].Players.Add(playerDataModel);
+						playerDataModel.Status = 1;
+					}
+					else
+					{
+						playerDataModel.Status = 2;
+					}
+				}
+				playerDataModel.NumberTable = tableNumber;
+				HttpContext.Session.Set("Player", playerDataModel);
+				return RedirectToAction("WaitingPlayers");
+			}
 		}
 
 		[HttpGet]
 		public IActionResult WaitingPlayers()
 		{
-			lock (StaticGameDataModelcs.ListPlayerLockObject)
+			int numberTable;
+			PlayerDataModel? playerDataModel = HttpContext.Session.Get<PlayerDataModel>("Player");
+			if (playerDataModel == null)
+				return View("SessionExpiration");
+			else
 			{
-				if (StaticGameDataModelcs.GameDataModel.ListPlayer.Count != 2)
-					return View();
+				numberTable = playerDataModel.NumberTable;
+			}
+			if (GamingTables.GameTable[numberTable].MotionPlayer.Status == -1 ||
+				GamingTables.GameTable[numberTable].Players.Count == 1)
+			{
+				lock (GamingTables.GameTable[numberTable].ChangesLockObject)
+				{
+					if (GamingTables.GameTable[numberTable].Players.Count == 1)
+					{
+						return View();
+					}
+					GamingTables.GameTable[numberTable].MotionPlayer = GamingTables.GameTable[numberTable].Players[0];
+				}
+				GamingTables.GameTable[numberTable].СreateTheField();
 			}
 			return RedirectToAction("Game");
 		}
@@ -57,28 +169,45 @@ namespace Homework.Controllers
 		public IActionResult Game()
 		{
 			PlayerDataModel? playerDataModel = HttpContext.Session.Get<PlayerDataModel>("Player");
-			return playerDataModel != null ?
-				View("Game", playerDataModel) :
-				View("Game", new PlayerDataModel());
+			if (playerDataModel == null)
+				return View("SessionExpiration");
+			else
+				return View(new GameDataModel(playerDataModel));
+
 		}
 
 		[HttpPost]
 		public IActionResult Game(int idPole)
 		{
-			StaticGameDataModelcs.GameDataModel.MakeAMove(idPole);
-			if (StaticGameDataModelcs.GameDataModel.Winner == -1)
-				if (StaticGameDataModelcs.GameDataModel.ListPlayer[0] == StaticGameDataModelcs.GameDataModel.MotionPlayer)
-					StaticGameDataModelcs.GameDataModel.MotionPlayer = StaticGameDataModelcs.GameDataModel.ListPlayer[1];
+			int numberTable;
+			PlayerDataModel? playerDataModel = HttpContext.Session.Get<PlayerDataModel>("Player");
+			if (playerDataModel == null)
+				return View("SessionExpiration");
+			else
+				numberTable = playerDataModel.NumberTable;
+
+			GamingTables.GameTable[numberTable].MakeAMove(idPole);
+			if (GamingTables.GameTable[numberTable].Winner == -1)
+			{
+				if (GamingTables.GameTable[numberTable].Players[0].Id == playerDataModel.Id)
+					GamingTables.GameTable[numberTable].MotionPlayer = GamingTables.GameTable[numberTable].Players[1];
 				else
-					StaticGameDataModelcs.GameDataModel.MotionPlayer = StaticGameDataModelcs.GameDataModel.ListPlayer[0];
+					GamingTables.GameTable[numberTable].MotionPlayer = GamingTables.GameTable[numberTable].Players[0];
+			}
 			return RedirectToAction("Game");
 		}
 
 		[HttpGet]
 		public IActionResult RestartGame()
 		{
-			StaticGameDataModelcs.GameDataModel.FillTheField();
-			return RedirectToAction("Game");
+			PlayerDataModel? playerDataModel = HttpContext.Session.Get<PlayerDataModel>("Player");
+			if (playerDataModel == null)
+				return View("SessionExpiration");
+			else
+			{
+				GamingTables.GameTable[playerDataModel.NumberTable].СreateTheField();
+				return RedirectToAction("WaitingPlayers");
+			}
 		}
 
 		public IActionResult Privacy()

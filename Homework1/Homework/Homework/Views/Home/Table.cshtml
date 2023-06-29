@@ -1,0 +1,13 @@
+﻿@model Table
+
+<div class="center">
+	Стол @Model.NumberTable<br>
+	Игрок X - @Model.NamesPlayer[0]<br>
+	Игрок O - @Model.NamesPlayer[1]<br>
+	Сейчас ходит Игрок - @Model.MotionPlayer <br>
+	Прошло - @Model.NumberFilledCells шагов от старта<br>
+	@await Html.PartialAsync("Field",@Model.FieldGame)
+	<form method="get" class="center" asp-area="" asp-controller="Home">
+		<button name="TableNumber" value=@Model.NumberTable asp-action="StartGame">Зайти в игру</button>
+	</form>
+</div>
