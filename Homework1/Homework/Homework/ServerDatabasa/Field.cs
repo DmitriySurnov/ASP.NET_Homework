@@ -2,11 +2,11 @@
 {
 	public class Field
 	{
-		public char[] FieldGame { private set; get; }
+		public char[] FieldGame { get; private set; }
 
-		public bool IsX { set; get; }
+		public bool IsX { get; private set; }
 
-		public int NumberFilledCells { private set; get; }
+		public int NumberFilledCells { get; private set; }
 
 		public Field()
 		{

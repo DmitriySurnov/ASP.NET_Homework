@@ -6,7 +6,7 @@
 	Игрок O - @Model.NamesPlayer[1]<br>
 	Сейчас ходит Игрок - @Model.MotionPlayer <br>
 	Прошло - @Model.NumberFilledCells шагов от старта<br>
-	@await Html.PartialAsync("Field",@Model.FieldGame)
+	@await Html.PartialAsync("Field",@Model.GameField)
 	<form method="get" class="center" asp-area="" asp-controller="Home">
 		<button name="TableNumber" value=@Model.NumberTable asp-action="StartGame">Зайти в игру</button>
 	</form>

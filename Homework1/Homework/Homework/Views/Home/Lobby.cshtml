@@ -20,7 +20,7 @@
 	}
 </style>
 
-<h1 class="center"> Добро пожалоть @Model.NameСurrentРlayer</h1>
+<h1 class="center"> Добро пожалоть @Model.СurrentРlayerName</h1>
 <h1 class="center"> Выберети стол</h1>
 <div id="tables">
 	@for (int currenId = 0; currenId < 3; currenId++)
@@ -28,7 +28,7 @@
 		@await Html.PartialAsync("Table",@Model.Tables[currenId])
 	}
 </div>
-<form method="get" class="center" asp-area="" asp-controller="Home">
+<form method="post" class="center" asp-area="" asp-controller="Home">
 	<button asp-action="Lobby">Обновить Информацию</button>
-	<button asp-action="Exit">На главную страницу</button>
+	<button asp-action="ToMainPage">На главную страницу</button>
 </form>

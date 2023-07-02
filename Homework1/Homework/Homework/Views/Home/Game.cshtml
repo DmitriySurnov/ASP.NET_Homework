@@ -12,8 +12,8 @@
 
 <div class="text-center">
 	<h1 class="display-4">
-		Привет @Model.NameСurrentРlayer
-		@if (Model.WinnerРlayer != "")
+		Привет @Model.СurrentРlayerName
+		@if (Model.InformationAboutWinner != "")
 		{
 			@await Html.PartialAsync("FinishGame")
 		}
@@ -23,12 +23,12 @@
 		}
 	</h1>
 	<form method="post" asp-area="" asp-controller="Home">
-		@await Html.PartialAsync("Field",@Model.FieldGame)
+		@await Html.PartialAsync("Field",@Model.GameField)
 	</form>
 	<h1 class="display-4">
-		@Model.WinnerРlayer
+		@Model.InformationAboutWinner
 	</h1>
-	<form method="get" asp-area="" asp-controller="Home">
+	<form method="post" asp-area="" asp-controller="Home">
 		<component type="typeof(Homework.Components.ControlButtons)" render-mode="Static" param-dataModel="Model" />
 	</form>
 </div>

@@ -6,17 +6,17 @@ namespace Homework.Models
 	{
 		public int NumberTable { get; private set; }
 
-		public string[] NamesPlayer { private set; get; }
+		public string[] NamesPlayer { get; private set; }
 
 		public int NumberFilledCells { get; private set; }
 
-		public string MotionPlayer { set; get; }
+		public string MotionPlayer { get; private set; }
 
-		public FieldModel FieldGame { private set; get; }
+		public FieldModel GameField { get; private set; }
 
 		public Table(PlayerDataModel player, int numberTable)
 		{
-			NumberTable = numberTable;
+			NumberTable = numberTable+1;
 			NamesPlayer = new string[2];
 			SetNamesPlayer(0, numberTable);
 			SetNamesPlayer(1, numberTable);
@@ -24,7 +24,7 @@ namespace Homework.Models
 			{
 				MotionPlayer = GamingTables.GameTable[numberTable].MotionPlayer.Name;
 				NumberFilledCells = GamingTables.GameTable[numberTable].Field.NumberFilledCells;
-				FieldGame = new FieldModel(GamingTables.GameTable[numberTable].Field.FieldGame, numberTable, player);
+				GameField = new FieldModel(GamingTables.GameTable[numberTable].Field.FieldGame, numberTable, player);
 			}
 			else
 			{
@@ -32,7 +32,7 @@ namespace Homework.Models
 				Field fieldGame = new Field();
 				fieldGame.FillTheField();
 				NumberFilledCells = fieldGame.NumberFilledCells;
-				FieldGame = new FieldModel(fieldGame.FieldGame, numberTable, player);
+				GameField = new FieldModel(fieldGame.FieldGame, numberTable, player);
 			}
 		}
 

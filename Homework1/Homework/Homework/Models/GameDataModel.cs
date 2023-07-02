@@ -4,45 +4,42 @@ namespace Homework.Models
 {
     public class GameDataModel
     {
-		public string NameСurrentРlayer { get; private set; }
+		public string СurrentРlayerName { get; private set; }
 
-		public bool IsРlayer { get; private set; }
+		public bool IsРlayer { get; private set; } // это игрок или зритель
 
-		public bool MotionPlayer { set; get; }
+		public bool IsCurrentPlayerMove { get; private set; } // является текущим ходом игрока
 
-		public FieldModel FieldGame { private set; get; }
+		public FieldModel GameField { get; private set; }
 
-		public bool IsX { get; set; }
-
-		public string WinnerРlayer { get; private set; }
+		public string InformationAboutWinner { get; private set; }
 
 		public GameDataModel(PlayerDataModel player)
         {
-			NameСurrentРlayer = player.Name;
+			СurrentРlayerName = player.Name;
 			IsРlayer = player.Status == 1;
-			MotionPlayer = GamingTables.GameTable[player.NumberTable].MotionPlayer.Id == player.Id;
-			FieldGame = new FieldModel(GamingTables.GameTable[player.NumberTable].Field.FieldGame, player.NumberTable, player);
-			IsX = GamingTables.GameTable[player.NumberTable].Field.IsX;
+			IsCurrentPlayerMove = GamingTables.GameTable[player.NumberTable].MotionPlayer.Id == player.Id;
+			GameField = new FieldModel(GamingTables.GameTable[player.NumberTable].Field.FieldGame, player.NumberTable, player);
 			switch (GamingTables.GameTable[player.NumberTable].Winner)
 			{
 				case 0:
 					{
-						WinnerРlayer = "Ничья";
+						InformationAboutWinner = "Ничья";
 						break;
 					}
 				case 1:
 					{
-						WinnerРlayer = $"Победил {GamingTables.GameTable[player.NumberTable].Players[0].Name}";
+						InformationAboutWinner = $"Победил {GamingTables.GameTable[player.NumberTable].Players[0].Name}";
 						break;
 					}
 				case 2:
 					{
-						WinnerРlayer = $"Победил {GamingTables.GameTable[player.NumberTable].Players[1].Name}";
+						InformationAboutWinner = $"Победил {GamingTables.GameTable[player.NumberTable].Players[1].Name}";
 						break;
 					}
 				default:
 					{
-						WinnerРlayer = "";
+						InformationAboutWinner = "";
 						break;
 					}
 			}

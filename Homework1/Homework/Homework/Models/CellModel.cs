@@ -10,7 +10,7 @@ namespace Homework.Models
 
 		public int CurrenId { get; private set; }
 
-		public bool IsMotionPlayer { private set; get; }
+		public bool IsMotionPlayer { get; private set; }
 
 		public CellModel(int currenId, char cellText, int numberTable, PlayerDataModel player) {
 			CurrenId = currenId;
