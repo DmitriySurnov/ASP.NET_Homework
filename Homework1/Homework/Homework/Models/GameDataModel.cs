@@ -4,15 +4,15 @@ namespace Homework.Models
 {
     public class GameDataModel
     {
-		public string СurrentРlayerName { get; private set; }
+		public string СurrentРlayerName { get; private set; } // Имя текущего игрока
 
 		public bool IsРlayer { get; private set; } // это игрок или зритель
 
 		public bool IsCurrentPlayerMove { get; private set; } // является текущим ходом игрока
 
-		public FieldModel GameField { get; private set; }
+		public FieldModel GameField { get; private set; } // Игровое поле 
 
-		public string InformationAboutWinner { get; private set; }
+		public string InformationAboutWinner { get; private set; } // Информация кто победил
 
 		public GameDataModel(PlayerDataModel player)
         {

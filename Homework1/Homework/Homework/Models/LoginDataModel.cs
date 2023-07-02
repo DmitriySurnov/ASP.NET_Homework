@@ -5,6 +5,6 @@ namespace Homework.Models
 	public class LoginDataModel
 	{
 		[Required(ErrorMessage = "Введите имя игрока")]
-		public string? PlayerName { get; private set; }
+		public string? PlayerName { get; set; }
 	}
 }

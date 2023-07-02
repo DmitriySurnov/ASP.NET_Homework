@@ -4,7 +4,7 @@
 	{
 		public char[] FieldGame { get; private set; }
 
-		public bool IsX { get; private set; }
+		public bool IsX { get; set; }
 
 		public int NumberFilledCells { get; private set; }
 

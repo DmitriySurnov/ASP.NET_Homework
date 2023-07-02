@@ -2,9 +2,9 @@
 
 <div class="center">
 	Стол @Model.NumberTable<br>
-	Игрок X - @Model.NamesPlayer[0]<br>
-	Игрок O - @Model.NamesPlayer[1]<br>
-	Сейчас ходит Игрок - @Model.MotionPlayer <br>
+	Игрок X - @Model.NamesPlayers[0]<br>
+	Игрок O - @Model.NamesPlayers[1]<br>
+	Сейчас ходит Игрок - @Model.MotionPlayerName <br>
 	Прошло - @Model.NumberFilledCells шагов от старта<br>
 	@await Html.PartialAsync("Field",@Model.GameField)
 	<form method="get" class="center" asp-area="" asp-controller="Home">
