@@ -33,6 +33,10 @@
       "PackagePath": "staticwebassets\\js\\IsSecondPlayerInGame.js"
     },
     {
+      "Id": "D:\\Разработка веб-приложений с использованием технологий ASP.NET и AJAX\\git\\ASP.NET_Homework1\\Homework1\\Homework\\Homework\\wwwroot\\js\\IsTwoPlayersInTheGame.js",
+      "PackagePath": "staticwebassets\\js\\IsTwoPlayersInTheGame.js"
+    },
+    {
       "Id": "D:\\Разработка веб-приложений с использованием технологий ASP.NET и AJAX\\git\\ASP.NET_Homework1\\Homework1\\Homework\\Homework\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "0ike19ZDhlxIfAUaiLFM8bFFdh0JQOTByosQE9rSqt4=",
+  "Hash": "hiHy2ZEYzbGOd1YtiEW5+1h36H1V3x2aDBMh7Kvn9RY=",
   "Source": "Homework",
   "BasePath": "_content/Homework",
   "Mode": "Default",
@@ -168,6 +168,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\IsSecondPlayerInGame.js"
+    },
+    {
+      "Identity": "D:\\Разработка веб-приложений с использованием технологий ASP.NET и AJAX\\git\\ASP.NET_Homework1\\Homework1\\Homework\\Homework\\wwwroot\\js\\IsTwoPlayersInTheGame.js",
+      "SourceId": "Homework",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Разработка веб-приложений с использованием технологий ASP.NET и AJAX\\git\\ASP.NET_Homework1\\Homework1\\Homework\\Homework\\wwwroot\\",
+      "BasePath": "_content/Homework",
+      "RelativePath": "js/IsTwoPlayersInTheGame.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\IsTwoPlayersInTheGame.js"
     },
     {
       "Identity": "D:\\Разработка веб-приложений с использованием технологий ASP.NET и AJAX\\git\\ASP.NET_Homework1\\Homework1\\Homework\\Homework\\wwwroot\\js\\site.js",
