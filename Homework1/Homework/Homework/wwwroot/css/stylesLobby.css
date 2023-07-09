@@ -1,0 +1,17 @@
+.center {
+    text-align: center;
+}
+
+#tables {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+    #tables > div {
+        width: 32%;
+        background: bisque;
+    }
+
+button {
+    margin-top: 10px;
+}
