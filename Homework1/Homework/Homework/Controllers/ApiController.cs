@@ -1,4 +1,5 @@
 ﻿using Homework.Extentions;
+using Homework.Models;
 using Homework.RequestDataModel;
 using Homework.Server;
 using Homework.ServerDatabase;
@@ -64,5 +65,20 @@ namespace Homework.Controllers
             }
             return false;
         }
-    }
+
+		[HttpPost]
+		public IActionResult GetTableHtml(
+			[FromRoute(Name = "id")] Guid tableGuid,
+			[FromRoute(Name = "number")] int numberTable)
+		{
+			Guid key = HttpContext.Session.Get<Guid>("PlayerGuid");
+			if (key == Guid.Empty || !Database.Players.ContainsKey(key)
+				|| !Database.Tables.ContainsKey(tableGuid))
+			{
+				return NotFound();
+			}
+			Game game = Database.Tables[tableGuid];
+			return PartialView("../_Partial/Table", new Table(tableGuid, numberTable, game));
+		}
+	}
 }

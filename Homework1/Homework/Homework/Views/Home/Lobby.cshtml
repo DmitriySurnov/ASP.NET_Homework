@@ -2,12 +2,22 @@
 
 <link rel="stylesheet" href="~/css/stylesLobby.css" />
 
+<script src="~/js/LobbyTableUpdate.js"></script>
+
 <h1 class="center"> Добро пожалоть @Model.СurrentРlayerName</h1>
 <h1 class="center"> Выберети стол</h1>
 <div id="tables">
 	@for (int currenId = 0; currenId < 3; currenId++)
 	{
-		@await Html.PartialAsync("../_Partial/Table",@Model.Tables[currenId])
+		<script>
+			SetUpdater('@Model.Tables[currenId].TableGuid', @Model.Tables[currenId].NumberTable, "#Table_@Model.Tables[currenId].NumberTable")
+		</script>
+		<div class="center">
+			@await Html.PartialAsync("../_Partial/Table",@Model.Tables[currenId])
+			<form method="post" class="center" asp-area="">
+				<button name="TableGuid" asp-controller="Game" value=@Model.Tables[currenId].TableGuid asp-action="StartGame">Зайти в игру</button>
+			</form>
+		</div>
 	}
 </div>
 <form method="post" class="center" asp-area="" asp-controller="Home">
