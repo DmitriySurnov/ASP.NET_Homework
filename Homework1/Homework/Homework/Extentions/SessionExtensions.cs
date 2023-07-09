@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 
-namespace Homework.ServerDatabasa
+namespace Homework.Extentions
 {
     public static class SessionExtensions
     {

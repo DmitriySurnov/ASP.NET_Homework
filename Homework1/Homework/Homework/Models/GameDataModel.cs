@@ -1,8 +1,9 @@
-﻿using Homework.ServerDatabasa;
+﻿using Homework.Server;
+using Homework.ServerDatabase;
 
 namespace Homework.Models
 {
-    public class GameDataModel
+	public class GameDataModel
     {
 		public string СurrentРlayerName { get; private set; } // Имя текущего игрока
 
@@ -14,13 +15,25 @@ namespace Homework.Models
 
 		public string InformationAboutWinner { get; private set; } // Информация кто победил
 
-		public GameDataModel(PlayerDataModel player)
-        {
+		public GameDataModel(Guid playerGuid)
+		{
+			Player player = Database.Players[playerGuid];
 			СurrentРlayerName = player.Name;
-			IsРlayer = player.Status == 1;
-			IsCurrentPlayerMove = GamingTables.GameTable[player.NumberTable].MotionPlayer.Id == player.Id;
-			GameField = new FieldModel(GamingTables.GameTable[player.NumberTable].Field.FieldGame, player.NumberTable, player);
-			switch (GamingTables.GameTable[player.NumberTable].Winner)
+			Game game = Database.Tables[player.NumberTable];
+			if (game.PlayerXGuid == playerGuid ||
+				game.PlayerOGuid == playerGuid)
+			{
+				IsРlayer = true;
+			}
+			else
+			{
+				IsРlayer = false;
+			}
+			IsCurrentPlayerMove = game.WhichPlayerWalkingGuid == playerGuid;
+			Field field = new Field(game.Field, IsCurrentPlayerMove);
+			field.DeterminingWinner();
+			GameField = new FieldModel(field.FieldGame, IsCurrentPlayerMove, field.Winner != -1);
+			switch (field.Winner)
 			{
 				case 0:
 					{
@@ -29,12 +42,12 @@ namespace Homework.Models
 					}
 				case 1:
 					{
-						InformationAboutWinner = $"Победил {GamingTables.GameTable[player.NumberTable].Players[0].Name}";
+						InformationAboutWinner = $"Победил {Database.Players[game.PlayerXGuid].Name}";
 						break;
 					}
 				case 2:
 					{
-						InformationAboutWinner = $"Победил {GamingTables.GameTable[player.NumberTable].Players[1].Name}";
+						InformationAboutWinner = $"Победил {Database.Players[game.PlayerOGuid].Name}";
 						break;
 					}
 				default:
@@ -44,5 +57,5 @@ namespace Homework.Models
 					}
 			}
 		}
-    }
+	}
 }

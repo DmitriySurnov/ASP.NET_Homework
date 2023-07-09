@@ -25,7 +25,7 @@
 <div id="tables">
 	@for (int currenId = 0; currenId < 3; currenId++)
 	{
-		@await Html.PartialAsync("Table",@Model.Tables[currenId])
+		@await Html.PartialAsync("../_Partial/Table",@Model.Tables[currenId])
 	}
 </div>
 <form method="post" class="center" asp-area="" asp-controller="Home">

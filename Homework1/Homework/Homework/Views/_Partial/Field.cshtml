@@ -39,7 +39,7 @@
 				<td>
 					@{
 						var currenId = rowCounter * 3 + columnCounter;
-						@await Html.PartialAsync("Cell",Model.FieldGame[@currenId])
+						@await Html.PartialAsync("../_Partial/Cell",Model.FieldGame[@currenId])
 					}
 				</td>
 			}

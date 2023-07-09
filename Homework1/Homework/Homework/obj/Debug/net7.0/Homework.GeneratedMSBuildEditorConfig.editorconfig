@@ -20,20 +20,16 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xDb250cm9sQnV0dG9ucy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Разработка веб-приложений с использованием технологий ASP.NET и AJAX/git/ASP.NET_Homework1/Homework1/Homework/Homework/Views/Home/Cell.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDZWxsLmNzaHRtbA==
+[D:/Разработка веб-приложений с использованием технологий ASP.NET и AJAX/git/ASP.NET_Homework1/Homework1/Homework/Homework/Views/Game/FinishGame.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2FtZVxGaW5pc2hHYW1lLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Разработка веб-приложений с использованием технологий ASP.NET и AJAX/git/ASP.NET_Homework1/Homework1/Homework/Homework/Views/Home/Field.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxGaWVsZC5jc2h0bWw=
+[D:/Разработка веб-приложений с использованием технологий ASP.NET и AJAX/git/ASP.NET_Homework1/Homework1/Homework/Homework/Views/Game/Game.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2FtZVxHYW1lLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Разработка веб-приложений с использованием технологий ASP.NET и AJAX/git/ASP.NET_Homework1/Homework1/Homework/Homework/Views/Home/FinishGame.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxGaW5pc2hHYW1lLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/Разработка веб-приложений с использованием технологий ASP.NET и AJAX/git/ASP.NET_Homework1/Homework1/Homework/Homework/Views/Home/Game.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxHYW1lLmNzaHRtbA==
+[D:/Разработка веб-приложений с использованием технологий ASP.NET и AJAX/git/ASP.NET_Homework1/Homework1/Homework/Homework/Views/Game/WaitingPlayers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2FtZVxXYWl0aW5nUGxheWVycy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Разработка веб-приложений с использованием технологий ASP.NET и AJAX/git/ASP.NET_Homework1/Homework1/Homework/Homework/Views/Home/Index.cshtml]
@@ -52,20 +48,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTZXNzaW9uRXhwaXJhdGlvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Разработка веб-приложений с использованием технологий ASP.NET и AJAX/git/ASP.NET_Homework1/Homework1/Homework/Homework/Views/Home/Table.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxUYWJsZS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/Разработка веб-приложений с использованием технологий ASP.NET и AJAX/git/ASP.NET_Homework1/Homework1/Homework/Homework/Views/Home/WaitingPlayers.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxXYWl0aW5nUGxheWVycy5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
 [D:/Разработка веб-приложений с использованием технологий ASP.NET и AJAX/git/ASP.NET_Homework1/Homework1/Homework/Homework/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Разработка веб-приложений с использованием технологий ASP.NET и AJAX/git/ASP.NET_Homework1/Homework1/Homework/Homework/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Разработка веб-приложений с использованием технологий ASP.NET и AJAX/git/ASP.NET_Homework1/Homework1/Homework/Homework/Views/_Partial/Cell.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1BhcnRpYWxcQ2VsbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Разработка веб-приложений с использованием технологий ASP.NET и AJAX/git/ASP.NET_Homework1/Homework1/Homework/Homework/Views/_Partial/Field.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1BhcnRpYWxcRmllbGQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Разработка веб-приложений с использованием технологий ASP.NET и AJAX/git/ASP.NET_Homework1/Homework1/Homework/Homework/Views/_Partial/Table.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1BhcnRpYWxcVGFibGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Разработка веб-приложений с использованием технологий ASP.NET и AJAX/git/ASP.NET_Homework1/Homework1/Homework/Homework/Views/_ViewImports.cshtml]

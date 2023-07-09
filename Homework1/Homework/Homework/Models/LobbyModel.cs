@@ -1,4 +1,5 @@
-﻿using Homework.ServerDatabasa;
+﻿using Homework.Server;
+using Homework.ServerDatabase;
 
 namespace Homework.Models
 {
@@ -8,13 +9,15 @@ namespace Homework.Models
 
 		public Table[] Tables { get; private set; }
 
-		public LobbyModel(PlayerDataModel player)
+		public LobbyModel(Player player)
 		{
 			СurrentРlayerName = player.Name;
-			Tables = new Table[3];
-			for (int currenTable = 0; currenTable < Tables.Length; currenTable++)
+			Tables = new Table[Database.Tables.Count];
+			int currenTable = 0;
+			foreach (var table in Database.Tables)
 			{
-				Tables[currenTable] = new Table(player, currenTable);
+				Tables[currenTable] = new Table(table.Key, currenTable, table.Value);
+				currenTable++;
 			}
 		}
 	}

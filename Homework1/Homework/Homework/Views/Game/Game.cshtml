@@ -15,20 +15,20 @@
 		Привет @Model.СurrentРlayerName
 		@if (Model.InformationAboutWinner != "")
 		{
-			@await Html.PartialAsync("FinishGame")
+			<div>Игра завершена</div>
 		}
 		else if (Model.IsРlayer)
 		{
 			<br /> @Html.WhoseMove(Model)
 		}
 	</h1>
-	<form method="post" asp-area="" asp-controller="Home">
-		@await Html.PartialAsync("Field",@Model.GameField)
+	<form method="post" asp-area="" asp-controller="Game">
+		@await Html.PartialAsync("../_Partial/Field",@Model.GameField)
 	</form>
 	<h1 class="display-4">
 		@Model.InformationAboutWinner
 	</h1>
-	<form method="post" asp-area="" asp-controller="Home">
+	<form method="post" asp-area="" asp-controller="Game">
 		<component type="typeof(Homework.Components.ControlButtons)" render-mode="Static" param-dataModel="Model" />
 	</form>
 </div>

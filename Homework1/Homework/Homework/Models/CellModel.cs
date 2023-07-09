@@ -1,6 +1,4 @@
-﻿using Homework.ServerDatabasa;
-
-namespace Homework.Models
+﻿namespace Homework.Models
 {
 	public class CellModel
 	{
@@ -12,11 +10,20 @@ namespace Homework.Models
 
 		public bool IsMotionPlayer { get; private set; }
 
-		public CellModel(int currenId, char cellText, int numberTable, PlayerDataModel player) {
+		public CellModel(char cellText)
+		{
+			CurrenId = 0;
+			CellText = cellText;
+			IsWinner = true;
+			IsMotionPlayer = false;
+		}
+
+		public CellModel(int currenId, char cellText, bool isWinner, bool IsCurrentPlayerMove)
+		{
 			CurrenId = currenId;
 			CellText = cellText;
-			IsWinner = GamingTables.GameTable[numberTable].Winner != -1;
-			IsMotionPlayer = GamingTables.GameTable[numberTable].MotionPlayer.Id == player.Id;
+			IsWinner = isWinner;
+			IsMotionPlayer = IsCurrentPlayerMove;
 		}
 	}
 }
