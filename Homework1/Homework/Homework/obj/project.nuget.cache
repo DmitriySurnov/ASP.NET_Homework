@@ -1,8 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "HDbM5hZIkG+HzZh/oTVZEEeFYuRV7vkvBZjv8GGTjhnZk5a0ZWaUOql95UP0brzia59tNuUIKEmVz8O9TUPBkg==",
+  "dgSpecHash": "nfsnY0m/ZLCx1uxaQQLodREwXIUshy5bn6xRgFXyOuRemDRyGVz6l1ZfPYUXTHZh/9Am7R1VAtHCPIQjha0H3Q==",
   "success": true,
   "projectFilePath": "D:\\Разработка веб-приложений с использованием технологий ASP.NET и AJAX\\git\\ASP.NET_Homework1\\Homework1\\Homework\\Homework\\Homework.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\splin\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\7.0.8\\microsoft.aspnetcore.jsonpatch.7.0.8.nupkg.sha512",
+    "C:\\Users\\splin\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\7.0.8\\microsoft.aspnetcore.mvc.newtonsoftjson.7.0.8.nupkg.sha512",
+    "C:\\Users\\splin\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\splin\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\splin\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512"
+  ],
   "logs": []
 }

@@ -1,4 +1,5 @@
 ﻿@{
+	ViewData["IsJqueryEnabled"] = true;
 	ViewData["Title"] = "Ожидание Играков";
 }
 <h1>Please, wait for other player to be connected ...</h1>
@@ -6,3 +7,5 @@
 <form method="post" asp-area="" asp-controller="Home">
 	<component type="typeof(Homework.Components.ControlButtons)" render-mode="Static" param-dataModel="null" />
 </form>
+
+<script src="~/js/IsSecondPlayerInGame.js"></script>

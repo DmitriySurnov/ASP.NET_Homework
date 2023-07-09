@@ -9,8 +9,28 @@
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
+      "Id": "D:\\Разработка веб-приложений с использованием технологий ASP.NET и AJAX\\git\\ASP.NET_Homework1\\Homework1\\Homework\\Homework\\wwwroot\\css\\stylesField.css",
+      "PackagePath": "staticwebassets\\css\\stylesField.css"
+    },
+    {
+      "Id": "D:\\Разработка веб-приложений с использованием технологий ASP.NET и AJAX\\git\\ASP.NET_Homework1\\Homework1\\Homework\\Homework\\wwwroot\\css\\stylesGame.css",
+      "PackagePath": "staticwebassets\\css\\stylesGame.css"
+    },
+    {
+      "Id": "D:\\Разработка веб-приложений с использованием технологий ASP.NET и AJAX\\git\\ASP.NET_Homework1\\Homework1\\Homework\\Homework\\wwwroot\\css\\stylesIndex.css",
+      "PackagePath": "staticwebassets\\css\\stylesIndex.css"
+    },
+    {
+      "Id": "D:\\Разработка веб-приложений с использованием технологий ASP.NET и AJAX\\git\\ASP.NET_Homework1\\Homework1\\Homework\\Homework\\wwwroot\\css\\stylesLobby.css",
+      "PackagePath": "staticwebassets\\css\\stylesLobby.css"
+    },
+    {
       "Id": "D:\\Разработка веб-приложений с использованием технологий ASP.NET и AJAX\\git\\ASP.NET_Homework1\\Homework1\\Homework\\Homework\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "D:\\Разработка веб-приложений с использованием технологий ASP.NET и AJAX\\git\\ASP.NET_Homework1\\Homework1\\Homework\\Homework\\wwwroot\\js\\IsSecondPlayerInGame.js",
+      "PackagePath": "staticwebassets\\js\\IsSecondPlayerInGame.js"
     },
     {
       "Id": "D:\\Разработка веб-приложений с использованием технологий ASP.NET и AJAX\\git\\ASP.NET_Homework1\\Homework1\\Homework\\Homework\\wwwroot\\js\\site.js",
