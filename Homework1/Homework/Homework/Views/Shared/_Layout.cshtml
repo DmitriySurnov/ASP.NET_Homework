@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="~/css/stylesGame.css" />
         <script src="~/js/IsTwoPlayersInTheGame.js"></script>
         <script src="~/js/UpdatingGame.js"></script>
+        <script src="~/js/WatchersGame.js"></script>
     }
     @if (ViewData["IsJqueryEnabled"] as bool? == true)
     {
@@ -44,6 +45,10 @@
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
+            @if (ViewData["IsGame"] as bool? == true)
+            {
+                <div id="Watchers"></div>
+            }
         </main>
     </div>
 

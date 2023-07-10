@@ -4,6 +4,7 @@ using Homework.RequestDataModel;
 using Homework.Server;
 using Homework.ServerDatabase;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace Homework.Controllers
 {
@@ -97,6 +98,17 @@ namespace Homework.Controllers
                 return NotFound();
             }
             return PartialView("../Game/TicTacToe", new GameDataModel(key));
+        }
+
+        [HttpPost]
+        public IActionResult GetWatchersGameHtml()
+        {
+            Guid key = HttpContext.Session.Get<Guid>("PlayerGuid");
+            if (key == Guid.Empty || !Database.Players.ContainsKey(key))
+            {
+                return NotFound();
+            }
+            return PartialView("../_Partial/Observers", new Observers(key));
         }
     }
 }
