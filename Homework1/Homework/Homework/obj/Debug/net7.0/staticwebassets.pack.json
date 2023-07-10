@@ -41,6 +41,10 @@
       "PackagePath": "staticwebassets\\js\\LobbyTableUpdate.js"
     },
     {
+      "Id": "D:\\Разработка веб-приложений с использованием технологий ASP.NET и AJAX\\git\\ASP.NET_Homework1\\Homework1\\Homework\\Homework\\wwwroot\\js\\UpdatingGame.js",
+      "PackagePath": "staticwebassets\\js\\UpdatingGame.js"
+    },
+    {
       "Id": "D:\\Разработка веб-приложений с использованием технологий ASP.NET и AJAX\\git\\ASP.NET_Homework1\\Homework1\\Homework\\Homework\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

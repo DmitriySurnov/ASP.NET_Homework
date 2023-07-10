@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Homework.Controllers
 {
-	public class ApiController : Controller
+    public class ApiController : Controller
     {
         public Guid[] GetTables()
         {
@@ -66,19 +66,37 @@ namespace Homework.Controllers
             return false;
         }
 
-		[HttpPost]
-		public IActionResult GetTableHtml(
-			[FromRoute(Name = "id")] Guid tableGuid,
-			[FromRoute(Name = "number")] int numberTable)
-		{
-			Guid key = HttpContext.Session.Get<Guid>("PlayerGuid");
-			if (key == Guid.Empty || !Database.Players.ContainsKey(key)
-				|| !Database.Tables.ContainsKey(tableGuid))
-			{
-				return NotFound();
-			}
-			Game game = Database.Tables[tableGuid];
-			return PartialView("../_Partial/Table", new Table(tableGuid, numberTable, game));
-		}
-	}
+        [HttpPost]
+        public IActionResult GetTableHtml(
+            [FromRoute(Name = "id")] Guid tableGuid,
+            [FromRoute(Name = "number")] int numberTable)
+        {
+            Guid key = HttpContext.Session.Get<Guid>("PlayerGuid");
+            if (key == Guid.Empty || !Database.Players.ContainsKey(key)
+                || !Database.Tables.ContainsKey(tableGuid))
+            {
+                return NotFound();
+            }
+            Game game = Database.Tables[tableGuid];
+            return PartialView("../_Partial/Table", new Table(tableGuid, numberTable, game));
+        }
+
+        [HttpPost]
+        public IActionResult GetUpdatingGameHtml(
+            [FromRoute(Name = "id")] string field)
+        {
+            Guid key = HttpContext.Session.Get<Guid>("PlayerGuid");
+            if (key == Guid.Empty || !Database.Players.ContainsKey(key))
+            {
+                return NotFound();
+            }
+            Player player = Database.Players[key];
+            Game game = Database.Tables[player.NumberTable];
+            if (game.Field == field)
+            {
+                return NotFound();
+            }
+            return PartialView("../Game/TicTacToe", new GameDataModel(key));
+        }
+    }
 }

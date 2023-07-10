@@ -5,9 +5,7 @@
 }
 @using Homework.HtmlHelpers
 
-
-
-<div class="text-center">
+<div class="text-center" id="Game">
 	<h1 class="display-4">
 		Привет @Model.СurrentРlayerName
 		@if (Model.InformationAboutWinner != "")
@@ -19,13 +17,15 @@
 			<br /> @Html.WhoseMove(Model)
 		}
 	</h1>
-	<form method="post" asp-area="" asp-controller="Game">
+	<form method="post" asp-area="">
 		@await Html.PartialAsync("../_Partial/Field",@Model.GameField)
 	</form>
 	<h1 class="display-4">
 		@Model.InformationAboutWinner
 	</h1>
-	<form method="post" asp-area="" asp-controller="Game">
+	<form method="post" asp-area="">
 		<component type="typeof(Homework.Components.ControlButtons)" render-mode="Static" param-dataModel="Model" />
 	</form>
+
+	<input type="hidden" id="IsCurrentPlayerMove" value="@Model.IsCurrentPlayerMove.ToString()" />
 </div>

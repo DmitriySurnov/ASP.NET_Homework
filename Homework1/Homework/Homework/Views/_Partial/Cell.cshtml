@@ -2,7 +2,7 @@
 
 @if (Model.IsMotionPlayer && !Model.IsWinner && Model.CellText == ' ')
 {
-	<button class="Cells" name="idPole" value=@Model.CurrenId asp-action="Game"></button>
+	<button class="Cells" name="idPole" value=@Model.CurrenId asp-controller="Game" asp-action="Game"></button>
 }
 else
 {

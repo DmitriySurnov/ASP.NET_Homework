@@ -103,7 +103,7 @@ namespace Homework.Controllers
             if (game.PlayerXGuid != Guid.Empty &&
                 game.PlayerOGuid != Guid.Empty)
             {
-                return RedirectToAction("Game");
+                return RedirectToAction("TicTacToe");
             }
             return View();
         }
@@ -137,7 +137,7 @@ namespace Homework.Controllers
 		}
 
 		[HttpGet]
-		public IActionResult Game()
+		public IActionResult TicTacToe()
 		{
 			Guid key = HttpContext.Session.Get<Guid>("PlayerGuid");
 			if (key == Guid.Empty || !Database.Players.ContainsKey(key))
