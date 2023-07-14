@@ -31,7 +31,8 @@ namespace Homework.Controllers
 		}
 
 		[HttpPost]
-		public IActionResult ToMainPage()
+        [HttpGet]
+        public IActionResult ToMainPage()
 		{
 			Guid key = HttpContext.Session.Get<Guid>("PlayerGuid");
 			if (key != Guid.Empty)
