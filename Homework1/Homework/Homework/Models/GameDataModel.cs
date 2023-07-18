@@ -15,11 +15,11 @@ namespace Homework.Models
 
 		public string InformationAboutWinner { get; private set; } // Информация кто победил
 
-		public GameDataModel(Guid playerGuid)
+		public GameDataModel(Guid playerGuid, Database database)
 		{
-			Player player = Database.Players[playerGuid];
+			Player player = database.Players[playerGuid];
 			СurrentРlayerName = player.Name;
-			Game game = Database.Tables[player.NumberTable];
+			Game game = database.Tables[player.NumberTable];
 			if (game.PlayerXGuid == playerGuid ||
 				game.PlayerOGuid == playerGuid)
 			{
@@ -42,12 +42,12 @@ namespace Homework.Models
 					}
 				case 1:
 					{
-						InformationAboutWinner = $"Победил {Database.Players[game.PlayerXGuid].Name}";
+						InformationAboutWinner = $"Победил {database.Players[game.PlayerXGuid].Name}";
 						break;
 					}
 				case 2:
 					{
-						InformationAboutWinner = $"Победил {Database.Players[game.PlayerOGuid].Name}";
+						InformationAboutWinner = $"Победил {database.Players[game.PlayerOGuid].Name}";
 						break;
 					}
 				default:

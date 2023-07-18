@@ -17,14 +17,14 @@ namespace Homework.Models
 
 		public FieldModel GameField { get; private set; } //  игровое полее
 
-		public Table(Guid tableGuid, int numberTable, Game game)
+		public Table(Guid tableGuid, int numberTable, Game game, Database database)
 		{
 			NumberTable = numberTable;
 			TableGuid = tableGuid;
 			NamesPlayers = new string[2];
-			NamesPlayers[0] = GetPlayerName(game.PlayerXGuid);
-			NamesPlayers[1] = GetPlayerName(game.PlayerOGuid);
-			WalkingPlayerName = GetPlayerName(game.WhichPlayerWalkingGuid);
+			NamesPlayers[0] = GetPlayerName(game.PlayerXGuid, database);
+			NamesPlayers[1] = GetPlayerName(game.PlayerOGuid, database);
+			WalkingPlayerName = GetPlayerName(game.WhichPlayerWalkingGuid, database);
 			Field fieldGame;
 			if (game.Field == string.Empty)
 			{
@@ -39,11 +39,11 @@ namespace Homework.Models
 			GameField = new FieldModel(fieldGame.FieldGame);
 		}
 
-		private static string GetPlayerName(Guid PlayerGuid)
+		private static string GetPlayerName(Guid PlayerGuid, Database database)
 		{
 			return PlayerGuid == Guid.Empty ?
 					new Player().Name :
-					Database.Players[PlayerGuid].Name;
+					database.Players[PlayerGuid].Name;
 		}
 	}
 }

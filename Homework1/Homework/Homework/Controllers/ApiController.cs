@@ -10,21 +10,28 @@ namespace Homework.Controllers
 {
     public class ApiController : Controller
     {
+        private Database _database;
+
+        public ApiController(Database database)
+        {
+            _database = database;
+        }
+
         public Guid[] GetTables()
         {
-            return Database.Tables.Keys.ToArray();
+            return _database.Tables.Keys.ToArray();
         }
 
         public Guid[] GetUsers()
         {
-            return Database.Players.Keys.ToArray();
+            return _database.Players.Keys.ToArray();
         }
 
         [HttpPost]
         public string GetUserNameJson([FromBody] GetUserNameRequest value)
         {
-            if (Database.Players.ContainsKey(value.userGuid))
-                return Database.Players[value.userGuid].Name;
+            if (_database.Players.ContainsKey(value.userGuid))
+                return _database.Players[value.userGuid].Name;
             else
                 return "неправильный id user";
         }
@@ -32,8 +39,8 @@ namespace Homework.Controllers
         [HttpPost]
         public string GetUserName(string userGuid)
         {
-            if (Database.Players.ContainsKey(new Guid(userGuid)))
-                return Database.Players[new Guid(userGuid)].Name;
+            if (_database.Players.ContainsKey(new Guid(userGuid)))
+                return _database.Players[new Guid(userGuid)].Name;
             else
                 return "неправильный id user";
         }
@@ -41,8 +48,8 @@ namespace Homework.Controllers
         [HttpPost]
         public string GetUserNameGuid(Guid userGuid)
         {
-            if (Database.Players.ContainsKey(userGuid))
-                return Database.Players[userGuid].Name;
+            if (_database.Players.ContainsKey(userGuid))
+                return _database.Players[userGuid].Name;
             else
                 return "неправильный id user";
         }
@@ -50,12 +57,12 @@ namespace Homework.Controllers
         public bool IsTwoPlayersInTheGame()
         {
             Guid key = HttpContext.Session.Get<Guid>("PlayerGuid");
-            if (key == Guid.Empty || !Database.Players.ContainsKey(key))
+            if (key == Guid.Empty || !_database.Players.ContainsKey(key))
             {
                 return false;
             }
-            Player player = Database.Players[key];
-            Game game = Database.Tables[player.NumberTable];
+            Player player = _database.Players[key];
+            Game game = _database.Tables[player.NumberTable];
             lock (game.ChangesLockObject)
             {
                 if (game.PlayerOGuid != Guid.Empty &&
@@ -73,13 +80,13 @@ namespace Homework.Controllers
             [FromRoute(Name = "number")] int numberTable)
         {
             Guid key = HttpContext.Session.Get<Guid>("PlayerGuid");
-            if (key == Guid.Empty || !Database.Players.ContainsKey(key)
-                || !Database.Tables.ContainsKey(tableGuid))
+            if (key == Guid.Empty || !_database.Players.ContainsKey(key)
+                || !_database.Tables.ContainsKey(tableGuid))
             {
                 return NotFound();
             }
-            Game game = Database.Tables[tableGuid];
-            return PartialView("../_Partial/Table", new Table(tableGuid, numberTable, game));
+            Game game = _database.Tables[tableGuid];
+            return PartialView("../_Partial/Table", new Table(tableGuid, numberTable, game, _database));
         }
 
         [HttpPost]
@@ -87,28 +94,28 @@ namespace Homework.Controllers
             [FromRoute(Name = "id")] string field)
         {
             Guid key = HttpContext.Session.Get<Guid>("PlayerGuid");
-            if (key == Guid.Empty || !Database.Players.ContainsKey(key))
+            if (key == Guid.Empty || !_database.Players.ContainsKey(key))
             {
                 return NotFound();
             }
-            Player player = Database.Players[key];
-            Game game = Database.Tables[player.NumberTable];
+            Player player = _database.Players[key];
+            Game game = _database.Tables[player.NumberTable];
             if (game.Field == field)
             {
                 return NotFound();
             }
-            return PartialView("../Game/TicTacToe", new GameDataModel(key));
+            return PartialView("../Game/TicTacToe", new GameDataModel(key, _database));
         }
 
         [HttpPost]
         public IActionResult GetWatchersGameHtml()
         {
             Guid key = HttpContext.Session.Get<Guid>("PlayerGuid");
-            if (key == Guid.Empty || !Database.Players.ContainsKey(key))
+            if (key == Guid.Empty || !_database.Players.ContainsKey(key))
             {
                 return NotFound();
             }
-            return PartialView("../_Partial/Observers", new Observers(key));
+            return PartialView("../_Partial/Observers", new Observers(key, _database));
         }
     }
 }

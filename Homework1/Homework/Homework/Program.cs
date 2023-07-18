@@ -1,3 +1,5 @@
+using Homework.ServerDatabase;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -10,6 +12,8 @@ builder.Services.AddSession(options =>
 	options.Cookie.HttpOnly = true;
 	options.Cookie.IsEssential = true;
 });// добавляем сервисы сессии
+
+builder.Services.AddSingleton(new Database());
 
 var app = builder.Build();
 

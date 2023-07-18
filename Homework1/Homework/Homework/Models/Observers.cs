@@ -9,12 +9,12 @@ namespace Homework.Models
 
 		public List<string> UserNameWatchersGameLobby { get; set; }
 
-		public Observers(Guid playerGuid)
+		public Observers(Guid playerGuid, Database database)
 		{
 			UserNameWatchersGame = new List<string>();
 			UserNameWatchersGameLobby = new List<string>();
-			Player user = Database.Players[playerGuid];
-			foreach(var player in Database.Players)
+			Player user = database.Players[playerGuid];
+			foreach(var player in database.Players)
 			{
 				if (player.Key == playerGuid)
 				{

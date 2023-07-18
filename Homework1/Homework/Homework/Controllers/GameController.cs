@@ -10,38 +10,38 @@ namespace Homework.Controllers
 	public class GameController : Controller
     {
 
-		private readonly ILogger<GameController> _logger;
+        private Database _database;
 
-		public GameController(ILogger<GameController> logger)
-		{
-			_logger = logger;
-		}
+        public GameController(Database database)
+        {
+            _database = database;
+        }
 
-		[HttpPost]
+        [HttpPost]
 		public IActionResult StartGame(Guid tableGuid)
         {
             Guid key = HttpContext.Session.Get<Guid>("PlayerGuid");
             if (key == Guid.Empty)
                 return View("../Home/SessionExpiration");
 
-            if (Database.Players[key].NumberTable == tableGuid)
+            if (_database.Players[key].NumberTable == tableGuid)
                 return RedirectToAction("WaitingPlayers");
-            if (Database.Players[key].NumberTable == Guid.Empty)
+            if (_database.Players[key].NumberTable == Guid.Empty)
             {
                 return JoiningTheGame(tableGuid, key);
             }
             else
             {
-                ExitPlayer(Database.Players[key], key);
-                Database.Players[key].NumberTable = Guid.Empty;
+                ExitPlayer(_database.Players[key], key);
+                _database.Players[key].NumberTable = Guid.Empty;
                 return JoiningTheGame(tableGuid, key);
             }
         }
 
-        public static void ExitPlayer(Player player, Guid playerKey)
+        public void ExitPlayer(Player player, Guid playerKey)
         {
 
-            Game game = Database.Tables[player.NumberTable];
+            Game game = _database.Tables[player.NumberTable];
             lock (game.ChangesLockObject)
             {
                 if (game.WhichPlayerWalkingGuid == playerKey)
@@ -66,8 +66,8 @@ namespace Homework.Controllers
 
         public IActionResult JoiningTheGame(Guid tableGuid, Guid Playerkey)
         {
-            Database.Players[Playerkey].NumberTable = tableGuid;
-            Game game = Database.Tables[tableGuid];
+            _database.Players[Playerkey].NumberTable = tableGuid;
+            Game game = _database.Tables[tableGuid];
             lock (game.ChangesLockObject)
             {
                 if (game.PlayerXGuid == Guid.Empty)
@@ -97,9 +97,9 @@ namespace Homework.Controllers
         public IActionResult WaitingPlayers()
         {
             Guid key = HttpContext.Session.Get<Guid>("PlayerGuid");
-            if (key == Guid.Empty || !Database.Players.ContainsKey(key))
+            if (key == Guid.Empty || !_database.Players.ContainsKey(key))
                 return View("../Home/SessionExpiration");
-            Game game = Database.Tables[Database.Players[key].NumberTable];
+            Game game = _database.Tables[_database.Players[key].NumberTable];
             if (game.PlayerXGuid != Guid.Empty &&
                 game.PlayerOGuid != Guid.Empty)
             {
@@ -112,13 +112,13 @@ namespace Homework.Controllers
 		public IActionResult FinishGame()
 		{
 			Guid key = HttpContext.Session.Get<Guid>("PlayerGuid");
-			if (!Database.Players.ContainsKey(key))
+			if (!_database.Players.ContainsKey(key))
 				return View();
-			Player player = Database.Players[key];
+			Player player = _database.Players[key];
 			if (player.NumberTable == Guid.Empty)
 				return View();
 			ExitPlayer(player, key);
-			Database.Players.Remove(key);
+			_database.Players.Remove(key);
 			return View();
 		}
 
@@ -127,7 +127,7 @@ namespace Homework.Controllers
 			Guid key = HttpContext.Session.Get<Guid>("PlayerGuid");
 			if (key == Guid.Empty)
 				return View("../Home/SessionExpiration");
-			Player player = Database.Players[key];
+			Player player = _database.Players[key];
 			if (player.NumberTable == Guid.Empty)
 				return RedirectToAction("Lobby");
 			ExitPlayer(player, key);
@@ -140,10 +140,10 @@ namespace Homework.Controllers
 		public IActionResult TicTacToe()
 		{
 			Guid key = HttpContext.Session.Get<Guid>("PlayerGuid");
-			if (key == Guid.Empty || !Database.Players.ContainsKey(key))
+			if (key == Guid.Empty || !_database.Players.ContainsKey(key))
 				return View("../Home/SessionExpiration");
 			else
-				return View(new GameDataModel(key));
+				return View(new GameDataModel(key, _database));
 
 		}
 
@@ -151,9 +151,9 @@ namespace Homework.Controllers
 		public IActionResult Game(int idPole)
 		{
 			Guid key = HttpContext.Session.Get<Guid>("PlayerGuid");
-			if (key == Guid.Empty || !Database.Players.ContainsKey(key))
+			if (key == Guid.Empty || !_database.Players.ContainsKey(key))
 				return View("../Home/SessionExpiration");
-			Game game = Database.Tables[Database.Players[key].NumberTable];
+			Game game = _database.Tables[_database.Players[key].NumberTable];
 			Field field = new Field(game.Field, game.PlayerXGuid == key);
 			field.MakeAMove(idPole);
 			game.Field = string.Join(",", field.FieldGame);
@@ -166,9 +166,9 @@ namespace Homework.Controllers
 		public IActionResult RestartGame()
 		{
 			Guid key = HttpContext.Session.Get<Guid>("PlayerGuid");
-			if (key == Guid.Empty || !Database.Players.ContainsKey(key))
+			if (key == Guid.Empty || !_database.Players.ContainsKey(key))
 				return View("../Home/SessionExpiration");
-            Game game = Database.Tables[Database.Players[key].NumberTable];
+            Game game = _database.Tables[_database.Players[key].NumberTable];
 			lock (game.ChangesLockObject)
 			{
 				if (game.PlayerOGuid == Guid.Empty ||

@@ -2,13 +2,13 @@
 
 namespace Homework.ServerDatabase
 {
-	public static class Database
+	public class Database
 	{
-		public static Dictionary<Guid, Player> Players;
+		public Dictionary<Guid, Player> Players;
 
-		public static Dictionary<Guid, Game> Tables;
+		public Dictionary<Guid, Game> Tables;
 
-		static Database()
+		public Database()
 		{
 			Players = new Dictionary<Guid, Player>();
 			Tables = new Dictionary<Guid, Game>();
