@@ -54,24 +54,24 @@ namespace Homework.Controllers
                 return "неправильный id user";
         }
 
-        public bool IsTwoPlayersInTheGame()
+        public int NumberPlayersInGame()
         {
             Guid key = HttpContext.Session.Get<Guid>("PlayerGuid");
             if (key == Guid.Empty || !_database.Players.ContainsKey(key))
             {
-                return false;
+                return 0;
             }
             Player player = _database.Players[key];
             Game game = _database.Tables[player.NumberTable];
             lock (game.ChangesLockObject)
             {
-                if (game.PlayerOGuid != Guid.Empty &&
-                game.PlayerXGuid != Guid.Empty)
+                if (game.PlayerOGuid == Guid.Empty ||
+                    game.PlayerXGuid == Guid.Empty)
                 {
-                    return true;
+                    return 1;
                 }
             }
-            return false;
+            return 2;
         }
 
         [HttpPost]

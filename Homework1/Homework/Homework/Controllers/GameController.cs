@@ -140,11 +140,17 @@ namespace Homework.Controllers
 		public IActionResult TicTacToe()
 		{
 			Guid key = HttpContext.Session.Get<Guid>("PlayerGuid");
-			if (key == Guid.Empty || !_database.Players.ContainsKey(key))
-				return View("../Home/SessionExpiration");
-			else
-				return View(new GameDataModel(key, _database));
-
+            if (key == Guid.Empty || !_database.Players.ContainsKey(key))
+            {
+                return View("../Home/SessionExpiration");
+            }
+			Game game = _database.Tables[_database.Players[key].NumberTable];
+			if (game.PlayerXGuid == Guid.Empty ||
+				game.PlayerOGuid == Guid.Empty)
+			{
+				return RedirectToAction("WaitingPlayers");
+			}
+			return View(new GameDataModel(key, _database));
 		}
 
 		[HttpPost]
