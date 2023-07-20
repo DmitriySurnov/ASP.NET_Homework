@@ -1,4 +1,4 @@
-using Homework.ServerDatabase;
+using Homework.ServerDatabasa;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,7 +8,7 @@ builder.Services.AddControllersWithViews()
 builder.Services.AddDistributedMemoryCache();// добавляем IDistributedMemoryCache
 builder.Services.AddSession(options =>
 {
-	options.IdleTimeout = TimeSpan.FromMinutes(10);
+	options.IdleTimeout = TimeSpan.FromMinutes(1);
 	options.Cookie.HttpOnly = true;
 	options.Cookie.IsEssential = true;
 });// добавляем сервисы сессии

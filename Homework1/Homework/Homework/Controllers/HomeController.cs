@@ -1,7 +1,7 @@
 ﻿using Homework.Extentions;
 using Homework.Models;
 using Homework.Server;
-using Homework.ServerDatabase;
+using Homework.ServerDatabasa;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -36,20 +36,41 @@ namespace Homework.Controllers
         [HttpGet]
         public IActionResult ToMainPage()
         {
-            Guid key = HttpContext.Session.Get<Guid>("PlayerGuid");
-            if (key != Guid.Empty)
+            Guid playerGuid = HttpContext.Session.Get<Guid>("PlayerGuid");
+            if (playerGuid != Guid.Empty)
             {
-                _database.Players.Remove(key);
-            }
+				if (_database.Players.ContainsKey(playerGuid))
+				{
+					ExitPlayer(playerGuid);
+				}
+			}
             return RedirectToAction("Index");
         }
 
-        [HttpGet]
+		private void ExitPlayer(Guid playerGuid)
+		{
+			if (_database.Players.ContainsKey(playerGuid))
+			{
+				Player player = _database.Players[playerGuid];
+				if (player.NumberTable != Guid.Empty)
+				{
+					GameController.ExitPlayer(player, playerGuid, _database);
+				}
+				_database.Players.Remove(playerGuid);
+			}
+		}
+
+		[HttpGet]
         public IActionResult SetLobby(string playerName)
         {
-            Guid key = Guid.NewGuid();
-            _database.Players.Add(key, new Player(playerName));
-            HttpContext.Session.Set("PlayerGuid", key);
+			Guid playerGuid = HttpContext.Session.Get<Guid>("PlayerGuid");
+			if (playerGuid != Guid.Empty)
+			{
+				ExitPlayer(playerGuid);
+			}
+			playerGuid = Guid.NewGuid();
+            _database.Players.Add(playerGuid, new Player(playerName));
+            HttpContext.Session.Set("PlayerGuid", playerGuid);
             return RedirectToAction("Lobby");
         }
 
@@ -57,14 +78,17 @@ namespace Homework.Controllers
         [HttpGet]
         public IActionResult Lobby()
         {
-            Guid key = HttpContext.Session.Get<Guid>("PlayerGuid");
-            if (key == Guid.Empty || !_database.Players.ContainsKey(key))
+            Guid playerGuid = HttpContext.Session.Get<Guid>("PlayerGuid");
+            if (playerGuid == Guid.Empty || !_database.Players.ContainsKey(playerGuid))
                 return View("SessionExpiration");
-            else
-                return View(new LobbyModel(_database.Players[key], _database));
+			Player player = _database.Players[playerGuid];
+			if (player.NumberTable != Guid.Empty)
+			{
+				GameController.ExitPlayer(player, playerGuid, _database);
+				player.NumberTable = Guid.Empty;
+			}
+			return View(new LobbyModel(_database.Players[playerGuid], _database));
         }
-
-
 
         public IActionResult Privacy()
         {

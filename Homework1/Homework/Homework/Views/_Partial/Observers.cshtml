@@ -3,8 +3,11 @@
 @using Homework.HtmlHelpers
 
 <div>
-	<div>Налюдают сейчас за данной игрой</div>
-	@Html.GetListName(Model.UserNameWatchersGame)
+	@if (Model.UserNameWatchersGame.Count > 0)
+	{
+		<div>Налюдают сейчас за данной игрой</div>
+		@Html.GetListName(Model.UserNameWatchersGame)
+	}
 	@if (Model.UserNameWatchersGameLobby.Count > 0)
 	{
 		<div>Налюдают сейчас за игрой серез лобби</div>

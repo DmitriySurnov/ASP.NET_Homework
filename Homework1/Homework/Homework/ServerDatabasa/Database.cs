@@ -1,12 +1,12 @@
 ﻿using Homework.Server;
 
-namespace Homework.ServerDatabase
+namespace Homework.ServerDatabasa
 {
 	public class Database
 	{
-		public Dictionary<Guid, Player> Players;
+		public Dictionary<Guid, Player> Players { get; }
 
-		public Dictionary<Guid, Game> Tables;
+		public Dictionary<Guid, Game> Tables { get; }
 
 		public Database()
 		{

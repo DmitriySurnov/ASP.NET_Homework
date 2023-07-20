@@ -1,5 +1,5 @@
 ﻿using Homework.Server;
-using Homework.ServerDatabase;
+using Homework.ServerDatabasa;
 
 namespace Homework.Models
 {
@@ -14,9 +14,11 @@ namespace Homework.Models
 			UserNameWatchersGame = new List<string>();
 			UserNameWatchersGameLobby = new List<string>();
 			Player user = database.Players[playerGuid];
-			foreach(var player in database.Players)
+			Game game = database.Tables[user.NumberTable];
+			foreach (var player in database.Players)
 			{
-				if (player.Key == playerGuid)
+				if (player.Key == playerGuid || player.Key == game.PlayerOGuid ||
+					player.Key == game.PlayerXGuid)
 				{
 					continue;
 				}
